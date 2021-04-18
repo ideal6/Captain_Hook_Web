@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Button from '../components/atoms/button'
 
 export const Home = (): JSX.Element => (
   <div className="container">
@@ -9,6 +10,7 @@ export const Home = (): JSX.Element => (
     </Head>
 
     <main>
+      <Button label="버튼" />
       <h1 className="title">
         Welcome to <a href="https://nextjs.org">Next.js!</a>
       </h1>
