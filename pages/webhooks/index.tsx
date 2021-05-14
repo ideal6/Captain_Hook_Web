@@ -11,6 +11,7 @@ const Webhooks: React.FC = () => {
         type="button"
         text="Webhooks Page"
         size="normal"
+        fontSize="normal"
         fontColor="#FFFFFF"
         backgroundColor="#000000"
       ></Button>

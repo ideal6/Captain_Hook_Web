@@ -11,6 +11,7 @@ const Notifications: React.FC = () => {
         type="button"
         text="Notifications Page"
         size="normal"
+        fontSize="normal"
         fontColor="#FFFFFF"
         backgroundColor="#000000"
       ></Button>

@@ -1,9 +1,19 @@
 interface ButtonProps {
-  label: string
+  type?: 'button' | 'submit'
+  text: string
+  size: 'small' | 'normal' | 'big'
+  fontSize: 'small' | 'normal' | 'big'
+  fontColor: string
+  backgroundColor: string
 }
 
-const Button: React.FC<ButtonProps> = ({ label }) => {
-  return <div>{label}</div>
+// button type, label, size, font color, background color
+const Button: React.FC<ButtonProps> = ({ type = 'button', text }) => {
+  return (
+    <button type={type} className="w-160 h-36">
+      {text}
+    </button>
+  )
 }
 
 export default Button
