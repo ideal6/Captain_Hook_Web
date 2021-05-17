@@ -18,7 +18,11 @@ module.exports = {
       },
       red: colors.red,
     },
-    extend: {},
+    extend: {
+      spacing: {
+        360: '22.5rem',
+      },
+    },
   },
   variants: {
     extend: {},

@@ -10,10 +10,10 @@ const Notifications: React.FC = () => {
       <Button
         type="button"
         text="Notifications Page"
-        size="normal"
+        size="big"
         fontSize="normal"
-        fontColor="#FFFFFF"
-        backgroundColor="#000000"
+        fontColor="white"
+        backgroundColor="primary"
       ></Button>
     </div>
   )

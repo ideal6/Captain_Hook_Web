@@ -1,3 +1,5 @@
+import cn from 'classnames'
+
 interface ButtonProps {
   type?: 'button' | 'submit'
   text: string
@@ -7,10 +9,36 @@ interface ButtonProps {
   backgroundColor: string
 }
 
-// button type, label, size, font color, background color
-const Button: React.FC<ButtonProps> = ({ type = 'button', text }) => {
+const btnSize = {
+  small: 'w-20 h-10',
+  normal: 'w-36 h-9',
+  big: 'w-360 h-10',
+}
+
+const textSize = {
+  small: 'text-xs',
+  normal: 'text-sm',
+  big: 'text-base',
+}
+
+const Button: React.FC<ButtonProps> = ({
+  type = 'button',
+  text,
+  size,
+  fontSize,
+  fontColor,
+  backgroundColor,
+}) => {
   return (
-    <button type={type} className="w-160 h-36">
+    <button
+      type={type}
+      className={cn(
+        btnSize[size],
+        textSize[fontSize],
+        `text-${fontColor}`,
+        `bg-${backgroundColor}`
+      )}
+    >
       {text}
     </button>
   )
