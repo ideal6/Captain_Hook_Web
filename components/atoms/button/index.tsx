@@ -1,7 +1,7 @@
 import cn from 'classnames'
 
 interface ButtonProps {
-  type?: 'button' | 'submit'
+  type: 'button' | 'submit'
   text: string
   size: 'small' | 'normal' | 'big'
   fontSize: 'small' | 'normal' | 'big'
