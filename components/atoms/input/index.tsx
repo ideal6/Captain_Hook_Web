@@ -1,9 +1,7 @@
 import cn from 'classnames'
 
-//hi
-
 interface InputProps {
-  type: 'email' | 'password' | 'radio' | 'checkbox' | 'search' | 'text' | 'url'
+  type: 'email' | 'password' | 'search' | 'text' | 'url'
   id: string
   name: string
   size: 'auth' | 'small' | 'normal' | 'big'
@@ -25,11 +23,10 @@ const Input: React.FC<InputProps> = ({ type, id, name, size, placeholder }) => {
       name={name}
       placeholder={placeholder}
       className={cn(
-        'rounded',
-        'pl-3 pr-2',
-        'text-base text-gray-300',
+        'rounded pl-3 pr-2',
+        'text-base text-gray-800 placeholder-gray-500',
         'border border-gray-300',
-        'focus:outline-none focus:border-opacity-0 focus:ring-2 focus:ring-primary',
+        'focus:outline-none focus:ring-1 focus:border-highlight focus:ring-highlight',
         inputSize[size]
       )}
     />
