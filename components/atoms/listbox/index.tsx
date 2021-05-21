@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import cn from 'classnames'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/outline'
 
 interface ListBoxProps {
@@ -33,15 +33,16 @@ const ListBox: React.FC<ListBoxProps> = ({
   const [isOpen, setIsOpen] = useState(false)
   const [selected, setSelected] = useState(placeholder)
 
-  function handleClickButton() {
+  const handleClickButton = useCallback(() => {
     setIsOpen(!isOpen)
-  }
+  }, [isOpen])
 
-  function handleClickElement(e) {
-    const index = e.target.dataset.idx
-    setIsOpen(!isOpen)
+  const handleClickElement = useCallback((e) => {
+    const index = e.currentTarget.dataset.idx
     setSelected(options[index])
-  }
+    setIsOpen(false)
+    console.log(e.currentTarget)
+  }, [])
 
   return (
     <>
@@ -74,32 +75,31 @@ const ListBox: React.FC<ListBoxProps> = ({
             )}
           </span>
         </button>
-        {isOpen && (
-          <ul
-            className={cn(
-              'overflow-auto',
-              'mt-1 w-full bg-white shadow-md',
-              'border border-gray-100 rounded'
-            )}
-          >
-            {options.map((option, idx) => {
-              return (
-                <li key={idx}>
-                  <div
-                    data-idx={idx}
-                    onClick={handleClickElement}
-                    className={cn(
-                      'pl-3 pr-3 py-2 text-gray-800',
-                      'hover:bg-highlight hover:text-gray-lighter cursor-pointer'
-                    )}
-                  >
-                    <span>{option}</span>
-                  </div>
-                </li>
-              )
-            })}
-          </ul>
-        )}
+        <ul
+          className={cn(
+            'overflow-auto',
+            'mt-1 w-full bg-white shadow-md',
+            'border border-gray-100 rounded',
+            {
+              hidden: !isOpen,
+            }
+          )}
+        >
+          {options.map((option, idx) => {
+            return (
+              <li key={idx} onClick={handleClickElement} data-idx={idx}>
+                <div
+                  className={cn(
+                    'pl-3 pr-3 py-2 text-gray-800',
+                    'hover:bg-highlight hover:text-gray-lighter cursor-pointer'
+                  )}
+                >
+                  <span>{option}</span>
+                </div>
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </>
   )
