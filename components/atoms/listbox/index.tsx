@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import cn from 'classnames'
 import { useCallback, useState } from 'react'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/outline'
@@ -41,7 +40,6 @@ const ListBox: React.FC<ListBoxProps> = ({
     const index = e.currentTarget.dataset.idx
     setSelected(options[index])
     setIsOpen(false)
-    console.log(e.currentTarget)
   }, [])
 
   return (

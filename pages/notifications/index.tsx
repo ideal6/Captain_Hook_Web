@@ -1,12 +1,13 @@
-import cn from 'classnames'
 import Head from 'next/head'
+import Box from '../../components/atoms/box'
 import Button from '../../components/atoms/button'
 import Input from '../../components/atoms/input'
 import ListBox from '../../components/atoms/listbox'
 
-const Notifications: React.FC = () => {
+const ChildComponent: React.FC = () => {
   return (
-    <div className={cn('ml-2')}>
+    <>
+      {' '}
       <Head>
         <title>Notifications</title>
       </Head>
@@ -46,7 +47,20 @@ const Notifications: React.FC = () => {
         size={'normal'}
         labelSize={'big'}
       ></ListBox>
-    </div>
+    </>
+  )
+}
+
+const Notifications: React.FC = () => {
+  return (
+    <Box
+      width="96"
+      height="96"
+      spacing="p-3"
+      backgroundColor="white"
+      hasShadow={true}
+      childComponent={<ChildComponent />}
+    ></Box>
   )
 }
 

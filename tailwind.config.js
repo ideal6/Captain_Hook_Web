@@ -25,6 +25,10 @@ module.exports = {
         },
         red: colors.red,
       },
+      boxShadow: {
+        primary:
+          '0px 1px 0px rgba(63, 63, 68, 0.05), 0px 1px 3px rgba(63, 63, 68, 0.15)',
+      },
     },
   },
   variants: {
