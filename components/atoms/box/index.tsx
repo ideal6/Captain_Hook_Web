@@ -6,7 +6,6 @@ interface BoxProps {
   spacing: string
   backgroundColor: string
   hasShadow: boolean
-  childComponent?: React.ReactNode
 }
 
 const Box: React.FC<BoxProps> = ({
@@ -15,17 +14,18 @@ const Box: React.FC<BoxProps> = ({
   spacing,
   backgroundColor,
   hasShadow,
-  childComponent,
+  children,
 }) => {
   return (
     <div
       className={cn(
         `w-${width} h-${height} ${spacing}`,
+        'border border-gray-300 border-opacity-40 rounded',
         `bg-${backgroundColor}`,
         hasShadow ? 'shadow-primary' : ''
       )}
     >
-      {childComponent}
+      {children}
     </div>
   )
 }

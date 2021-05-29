@@ -5,9 +5,15 @@ import Input from '../../components/atoms/input'
 import ListBox from '../../components/atoms/listbox'
 import Span from '../../components/atoms/span'
 
-const ChildComponent: React.FC = () => {
+const Notifications: React.FC = () => {
   return (
-    <>
+    <Box
+      width="96"
+      height="96"
+      spacing="p-3"
+      backgroundColor="white"
+      hasShadow={true}
+    >
       {' '}
       <Head>
         <title>Notifications</title>
@@ -55,20 +61,7 @@ const ChildComponent: React.FC = () => {
         fontColor="primary"
         fontWeight="bold"
       />
-    </>
-  )
-}
-
-const Notifications: React.FC = () => {
-  return (
-    <Box
-      width="96"
-      height="96"
-      spacing="p-3"
-      backgroundColor="white"
-      hasShadow={true}
-      childComponent={<ChildComponent />}
-    ></Box>
+    </Box>
   )
 }
 
