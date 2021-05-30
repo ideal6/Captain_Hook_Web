@@ -4,12 +4,13 @@ import Button from '../../components/atoms/button'
 import Input from '../../components/atoms/input'
 import ListBox from '../../components/atoms/listbox'
 import Span from '../../components/atoms/span'
+import NotificationItem from '../../components/molecules/notificationitem'
 
 const Notifications: React.FC = () => {
   return (
     <Box
-      width="96"
-      height="96"
+      width="1920"
+      height="720"
       spacing="p-3"
       backgroundColor="white"
       hasShadow={true}
@@ -61,8 +62,33 @@ const Notifications: React.FC = () => {
         fontColor="primary"
         fontWeight="bold"
       />
+      <br />
+      {items.map(({ name, recentDate, webhookId, notificationId }, idx) => (
+        <NotificationItem
+          key={idx}
+          name={name}
+          recentDate={recentDate}
+          webhookId={webhookId}
+          notificationId={notificationId}
+        />
+      ))}
     </Box>
   )
 }
+
+const items = [
+  {
+    name: 'Notification 1',
+    recentDate: new Date(),
+    webhookId: ['google_calendar'],
+    notificationId: ['gmail', 'telegram', 'discord'],
+  },
+  {
+    name: 'Notification 2',
+    recentDate: new Date(),
+    webhookId: ['github', 'google_drive'],
+    notificationId: ['slack', 'discord'],
+  },
+]
 
 export default Notifications
