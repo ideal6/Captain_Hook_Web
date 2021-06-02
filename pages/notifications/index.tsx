@@ -5,6 +5,7 @@ import Input from '../../components/atoms/input'
 import ListBox from '../../components/atoms/listbox'
 import Span from '../../components/atoms/span'
 import NotificationItem from '../../components/molecules/notificationitem'
+import Table from '../../components/molecules/table'
 
 const Notifications: React.FC = () => {
   return (
@@ -72,6 +73,10 @@ const Notifications: React.FC = () => {
           notificationId={notificationId}
         />
       ))}
+      <br />
+      <br />
+      <br />
+      <Table title={['이름', '종류', 'KEY']} content={tableItems}></Table>
     </Box>
   )
 }
@@ -88,6 +93,29 @@ const items = [
     recentDate: new Date(),
     webhookId: ['github', 'google_drive'],
     notificationId: ['slack', 'discord'],
+  },
+]
+
+const tableItems = [
+  {
+    name: '조예승의 텔레그램',
+    type: '텔레그램',
+    key: '1',
+  },
+  {
+    name: '조예승의 슬랙',
+    type: '슬랙',
+    key: '2',
+  },
+  {
+    name: '조예승의 지메일',
+    type: '지메일',
+    key: '3',
+  },
+  {
+    name: '조예승의 디스코드',
+    type: '디스코드',
+    key: '',
   },
 ]
 
