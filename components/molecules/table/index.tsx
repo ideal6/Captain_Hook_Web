@@ -26,12 +26,7 @@ const Table: React.FC<TableProps> = ({ title, content }) => {
       <tbody>
         {content.map((option, idx) => (
           <tr key={idx}>
-            <Td
-              key={idx}
-              fontSize="normal"
-              fontColor="text-black"
-              options={option}
-            />
+            <Td key={idx} options={option} />
           </tr>
         ))}
       </tbody>
