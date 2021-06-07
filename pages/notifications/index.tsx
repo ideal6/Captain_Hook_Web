@@ -77,6 +77,9 @@ const Notifications: React.FC = () => {
       <br />
       <br />
       <Table title={['이름', '종류', 'KEY']} content={tableItems}></Table>
+      <br />
+      <br />
+      <br />
     </Box>
   )
 }
@@ -115,7 +118,7 @@ const tableItems = [
   {
     name: '조예승의 디스코드',
     type: '디스코드',
-    key: '',
+    key: '4',
   },
 ]
 
