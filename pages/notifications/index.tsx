@@ -77,6 +77,9 @@ const Notifications: React.FC = () => {
       <br />
       <br />
       <Table title={['이름', '종류', 'KEY']} content={tableItems}></Table>
+      <br />
+      <br />
+      <br />
     </Box>
   )
 }
