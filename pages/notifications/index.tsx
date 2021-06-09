@@ -115,7 +115,7 @@ const tableItems = [
   {
     name: '조예승의 디스코드',
     type: '디스코드',
-    key: '',
+    key: '4',
   },
 ]
 

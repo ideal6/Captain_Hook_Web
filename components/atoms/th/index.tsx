@@ -1,24 +1,17 @@
 import cn from 'classnames'
 
 interface ThProps {
-  fontSize: 'small' | 'normal' | 'big'
   fontColor: string
   option: string
 }
 
-const textSize = {
-  small: 'text-xs text-gray-600 ',
-  normal: 'text-sm text-gray-800',
-  big: 'text-base text-gray-800 ',
-}
-
-const Th: React.FC<ThProps> = ({ fontSize, option, fontColor }) => {
+const Th: React.FC<ThProps> = ({ option, fontColor }) => {
   return (
     <th
+      scope="col"
       className={cn(
-        'flex flex-row justify-between',
         `text-${fontColor}`,
-        textSize[fontSize]
+        'px-6 py-3 text-left text-xs font-normal text-gray-500 tracking-wider'
       )}
     >
       {option}
