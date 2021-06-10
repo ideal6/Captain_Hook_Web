@@ -21,6 +21,7 @@ const textSize = {
   big: 'text-base',
 }
 
+// TODO: button rounded, shadow, hover-pointer, hover-color
 const Button: React.FC<ButtonProps> = ({
   type = 'button',
   text,

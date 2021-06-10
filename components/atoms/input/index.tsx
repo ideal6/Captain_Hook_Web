@@ -4,6 +4,7 @@ interface InputProps {
   type: 'email' | 'password' | 'search' | 'text' | 'url'
   id: string
   name: string
+  spacing: string
   size: 'auth' | 'small' | 'normal' | 'big'
   placeholder?: string | undefined
 }
@@ -15,7 +16,14 @@ const inputSize = {
   big: 'w-480 h-10',
 }
 
-const Input: React.FC<InputProps> = ({ type, id, name, size, placeholder }) => {
+const Input: React.FC<InputProps> = ({
+  type,
+  id,
+  name,
+  spacing,
+  size,
+  placeholder,
+}) => {
   return (
     <input
       type={type}
@@ -23,7 +31,7 @@ const Input: React.FC<InputProps> = ({ type, id, name, size, placeholder }) => {
       name={name}
       placeholder={placeholder}
       className={cn(
-        'rounded pl-3 pr-2',
+        `rounded pl-3 pr-2 ${spacing}`,
         'text-base text-gray-800 placeholder-gray-500',
         'border border-gray-300',
         'focus:outline-none focus:ring-1 focus:border-highlight focus:ring-highlight',

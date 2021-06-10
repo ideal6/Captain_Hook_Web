@@ -35,6 +35,7 @@ const Notifications: React.FC = () => {
         type="email"
         id="noti_email"
         name="noti_name"
+        spacing=""
         placeholder={'Notification Page'}
         size="normal"
       ></Input>
