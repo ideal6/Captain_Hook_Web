@@ -30,16 +30,16 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
         <BellIcon className={cn('w-7 h-7 my-auto mx-5')} />
         <div className={cn('flex flex-col mt-3.5 mb-4 justify-evenly')}>
           <Span
-            text={name}
+            spacing=""
             fontSize="normal"
             fontColor="gray-800"
             fontWeight="bold"
-          />
-          <Span
-            text={`최근 받은 날짜: ${recentDate}`}
-            fontSize="normal"
-            fontColor="gray-default"
-          />
+          >
+            {name}
+          </Span>
+          <Span spacing="" fontSize="normal" fontColor="gray-default">
+            {`최근 받은 날짜: ${recentDate}`}
+          </Span>
         </div>
       </div>
       <div

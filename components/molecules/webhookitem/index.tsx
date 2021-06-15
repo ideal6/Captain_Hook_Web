@@ -22,16 +22,16 @@ const WebhookItem: React.FC<WebhookItemProps> = ({ id, name, recentDate }) => {
       <img src={`/${id}.png`} className={cn('h-14 w-14 my-auto ml-8 mr-5')} />
       <div className={cn('flex flex-col mt-3.5 mb-4 justify-evenly')}>
         <Span
-          text={name}
+          spacing=""
           fontSize="normal"
           fontColor="gray-800"
           fontWeight="bold"
-        />
-        <Span
-          text={`최근 받은 날짜: ${recentDate}`}
-          fontSize="normal"
-          fontColor="gray-default"
-        />
+        >
+          {name}
+        </Span>
+        <Span spacing="" fontSize="normal" fontColor="gray-default">
+          {`최근 받은 날짜: ${recentDate}`}
+        </Span>
       </div>
     </Box>
   )
