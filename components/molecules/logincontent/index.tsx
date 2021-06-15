@@ -57,6 +57,8 @@ const LoginContent: React.FC<LoginContentProps> = ({ name }) => {
           fontSize="normal"
           fontColor="white"
           backgroundColor="primary"
+          // eslint-disable-next-line no-console
+          onClickHandler={(e) => console.log(e.target)}
         ></Button>
       </div>
 

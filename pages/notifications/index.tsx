@@ -27,6 +27,8 @@ const Notifications: React.FC = () => {
         fontSize="normal"
         fontColor="white"
         backgroundColor="primary"
+        // eslint-disable-next-line no-console
+        onClickHandler={(e) => console.log(e)}
       ></Button>
       <br />
       <br />
