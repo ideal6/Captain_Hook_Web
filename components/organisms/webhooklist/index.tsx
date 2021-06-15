@@ -29,9 +29,9 @@ const WebhookList: React.FC<WebhookListProps> = ({ spacing }) => {
           type="button"
           size="normal"
           text="웹훅 추가"
-          fontSize="normal"
-          fontColor="white"
-          backgroundColor="primary"
+          fontSize="big"
+          fontColor="primary"
+          backgroundColor="white"
         />
       </div>
       {/* 3. 웹훅 list */}

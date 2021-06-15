@@ -7,6 +7,7 @@ interface ButtonProps {
   fontSize: 'small' | 'normal' | 'big'
   fontColor: string
   backgroundColor: string
+  onClickHandler: React.MouseEventHandler<HTMLButtonElement>
 }
 
 const btnSize = {
@@ -29,15 +30,22 @@ const Button: React.FC<ButtonProps> = ({
   fontSize,
   fontColor,
   backgroundColor,
+  onClickHandler,
 }) => {
   return (
     <button
       type={type}
+      onClick={onClickHandler}
       className={cn(
         btnSize[size],
         textSize[fontSize],
-        `text-${fontColor}`,
-        `bg-${backgroundColor}`
+        `text-${fontColor} font-bold`,
+        `bg-${backgroundColor}`,
+        'border border-gray-300 border-opacity-40 rounded-lg',
+        'focus:outline-none shadow-primary',
+        backgroundColor == 'white'
+          ? 'hover:bg-gray-100 hover:bg-opacity-50'
+          : `hover:bg-opacity-90`
       )}
     >
       {text}
