@@ -34,7 +34,7 @@ const Input: React.FC<InputProps> = ({
         `rounded pl-3 pr-2 ${spacing}`,
         'text-base text-gray-800 placeholder-gray-500',
         'border border-gray-300',
-        'focus:outline-none focus:ring-1 focus:border-highlight focus:ring-highlight',
+        'focus:outline-none focus:ring-1 focus:border-primary focus:ring-primary',
         inputSize[size]
       )}
     />

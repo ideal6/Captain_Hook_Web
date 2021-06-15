@@ -1,11 +1,16 @@
-import AuthBox from '../../components/atoms/authbox'
-import LoginContent from '../../components/molecules/logincontent'
+import cn from 'classnames'
+import LoginContent from '../../components/organisms/logincontent'
 
 const Login: React.FC = () => {
   return (
-    <AuthBox spacing="p-0" backgroundColor="white">
-      <LoginContent name="로그인"></LoginContent>
-    </AuthBox>
+    <div
+      className={cn(
+        'w-screen h-screen bg-gray-100',
+        'flex justify-center items-center'
+      )}
+    >
+      <LoginContent />
+    </div>
   )
 }
 

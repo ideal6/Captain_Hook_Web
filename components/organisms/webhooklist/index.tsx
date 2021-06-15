@@ -32,6 +32,8 @@ const WebhookList: React.FC<WebhookListProps> = ({ spacing }) => {
           fontSize="big"
           fontColor="primary"
           backgroundColor="white"
+          // eslint-disable-next-line no-console
+          onClickHandler={(e) => console.log(e)}
         />
       </div>
       {/* 3. 웹훅 list */}

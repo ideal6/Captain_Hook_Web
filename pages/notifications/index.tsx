@@ -3,7 +3,6 @@ import Box from '../../components/atoms/box'
 import Button from '../../components/atoms/button'
 import Input from '../../components/atoms/input'
 import ListBox from '../../components/atoms/listbox'
-import Span from '../../components/atoms/span'
 import NotificationItem from '../../components/molecules/notificationitem'
 import Table from '../../components/molecules/table'
 
@@ -60,12 +59,6 @@ const Notifications: React.FC = () => {
         labelSize={'big'}
       />
       <br />
-      <Span
-        text="Oink Oink"
-        fontSize="normal"
-        fontColor="primary"
-        fontWeight="bold"
-      />
       <br />
       {items.map(({ name, recentDate, webhookId, notificationId }, idx) => (
         <NotificationItem

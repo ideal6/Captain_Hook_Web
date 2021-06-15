@@ -1,7 +1,7 @@
 import cn from 'classnames'
 
 interface SpanProps {
-  text: string
+  spacing: string
   fontSize: 'small' | 'normal' | 'big' | 'title' | 'subTitle'
   fontColor: string
   fontWeight?: 'bold'
@@ -16,7 +16,8 @@ const textSize = {
 }
 
 const Span: React.FC<SpanProps> = ({
-  text,
+  children,
+  spacing,
   fontSize,
   fontColor,
   fontWeight,
@@ -25,11 +26,11 @@ const Span: React.FC<SpanProps> = ({
     <span
       className={cn(
         textSize[fontSize],
-        `text-${fontColor}`,
+        `text-${fontColor} ${spacing}`,
         fontWeight ? `font-${fontWeight}` : ''
       )}
     >
-      {text}
+      {children}
     </span>
   )
 }
