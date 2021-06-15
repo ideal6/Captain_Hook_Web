@@ -20,6 +20,11 @@ const Home: React.FC = () => (
             <a>Notification List Page</a>
           </Link>
         </li>
+        <li>
+          <Link href="/login">
+            <a>Login Page</a>
+          </Link>
+        </li>
       </ul>
     </main>
   </div>
