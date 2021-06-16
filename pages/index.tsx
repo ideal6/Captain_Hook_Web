@@ -25,6 +25,11 @@ const Home: React.FC = () => (
             <a>Login Page</a>
           </Link>
         </li>
+        <li>
+          <Link href="/signup">
+            <a>Sign Up Page</a>
+          </Link>
+        </li>
       </ul>
     </main>
   </div>
