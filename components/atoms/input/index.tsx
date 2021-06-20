@@ -5,12 +5,13 @@ interface InputProps {
   id: string
   name: string
   spacing: string
-  size: 'auth' | 'small' | 'normal' | 'big'
+  size: 'auth' | 'small' | 'normal' | 'big' | 'copy'
   placeholder?: string | undefined
 }
 
 const inputSize = {
   auth: 'w-360 h-50',
+  copy: 'w-96 h-10',
   small: 'w-60 h-10',
   normal: 'w-360 h-10',
   big: 'w-480 h-10',
