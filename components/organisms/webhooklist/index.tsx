@@ -4,6 +4,7 @@ import Button from '../../atoms/button'
 import Input from '../../atoms/input'
 import WebhookItem from '../../molecules/webhookitem'
 import AppBar from '../appbar'
+import SideBar from '../sidebar'
 
 interface WebhookListProps {
   spacing: string
@@ -45,6 +46,9 @@ const WebhookList: React.FC<WebhookListProps> = ({ spacing }) => {
       </div>
       {/* 4. App bar */}
       <AppBar alarm={3} />
+
+      {/* 5. side bar */}
+      <SideBar location={1} />
     </div>
   )
 }
