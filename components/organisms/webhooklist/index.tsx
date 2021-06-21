@@ -2,10 +2,7 @@ import { SearchIcon } from '@heroicons/react/outline'
 import cn from 'classnames'
 import Button from '../../atoms/button'
 import Input from '../../atoms/input'
-import CopyInput from '../../molecules/copyinput'
 import WebhookItem from '../../molecules/webhookitem'
-import AppBar from '../appbar'
-import SideBar from '../sidebar'
 
 interface WebhookListProps {
   spacing: string
@@ -45,15 +42,6 @@ const WebhookList: React.FC<WebhookListProps> = ({ spacing }) => {
           <WebhookItem key={idx} id={id} name={name} recentDate={recentDate} />
         ))}
       </div>
-
-      {/* 4. copy input */}
-      <CopyInput color="text-indigo-600"></CopyInput>
-
-      {/* 5. App bar */}
-      <AppBar alarm={3} />
-
-      {/* 6. side bar */}
-      <SideBar location={1} />
     </div>
   )
 }

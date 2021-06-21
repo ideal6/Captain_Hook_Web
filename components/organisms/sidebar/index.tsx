@@ -1,14 +1,10 @@
 import cn from 'classnames'
-import Link from 'next/link'
+// import Link from 'next/link'
 
-interface SideBarProps {
-  location: number
-}
-
-const SideBar: React.FC<SideBarProps> = ({ location }) => {
+const SideBar: React.FC = () => {
   return (
     <div className={cn('flex flex-no-wrap')}>
-      <div
+      {/* <div
         className={cn(
           'w-64 absolute sm: relative bg-gray-700 shadow md: h-screen flex-col justify-between hidden sm:flex'
         )}
@@ -127,7 +123,7 @@ const SideBar: React.FC<SideBarProps> = ({ location }) => {
             </ul>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
