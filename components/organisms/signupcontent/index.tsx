@@ -1,3 +1,4 @@
+import { ArrowLeftIcon } from '@heroicons/react/solid'
 import cn from 'classnames'
 import Link from 'next/link'
 import Box from '../../atoms/box'
@@ -16,57 +17,31 @@ const SignUpContent: React.FC = () => {
     >
       <div className={cn('w-1/2 flex justify-center')}>
         <div className={cn('w-360 pb-3 flex flex-col')}>
-          <div className={cn('flex flex-row mb-8')}>
-            <div className={cn('w-1/2')}>
-              <div className={cn('flex text-gray-400')}>
-                <Link href="./login">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={cn('h-6 w-6 mr-1')}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    {' '}
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                    />{' '}
-                  </svg>
-                </Link>
-                <Link href="./login">
-                  <a className={cn('text-base')}>뒤로가기</a>
-                </Link>
-              </div>
-            </div>
+          <div className={cn('flex justify-between text-gray-400')}>
+            <Link href="./login">
+              <a className={cn('text-base', 'flex', 'flex-row')}>
+                <ArrowLeftIcon className={cn('w-5 h-5')} viewBox="0 0 20 16" />
+                &nbsp;뒤로가기
+              </a>
+            </Link>
 
-            <div className={cn('w-1/2 text-right')}>
-              <Span
-                fontSize="big"
-                spacing="mb-5 text-right"
-                fontColor="gray-400"
-              >
-                계정이 있으시다면?{' '}
-                <Link href="./login">
-                  <a className={cn('text-base text-primary underline')}>
-                    로그인
-                  </a>
-                </Link>
-              </Span>
-            </div>
+            <Span fontSize="big" spacing="mb-5 text-right" fontColor="gray-400">
+              계정이 있으시다면?{' '}
+              <Link href="./login">
+                <a className={cn('text-base text-primary underline')}>로그인</a>
+              </Link>
+            </Span>
           </div>
+
           <Span
-            spacing="mb-2"
+            spacing="mt-4"
             fontSize="subTitle"
             fontColor="primary"
             fontWeight="bold"
           >
             회원가입
           </Span>
-
-          <Span spacing="" fontSize="big" fontColor="gray-400">
+          <Span spacing="mt-2" fontSize="big" fontColor="gray-400">
             새로운 계정 생성하기
           </Span>
 
@@ -76,7 +51,7 @@ const SignUpContent: React.FC = () => {
               type="text"
               id="name"
               name="name"
-              spacing="mt-12"
+              spacing="mt-10 mb-4"
               size="auth"
               placeholder="이름"
             />
@@ -84,7 +59,7 @@ const SignUpContent: React.FC = () => {
               type="email"
               id="email"
               name="email"
-              spacing="mt-6"
+              spacing="mb-4"
               size="auth"
               placeholder="이메일"
             />
@@ -92,7 +67,7 @@ const SignUpContent: React.FC = () => {
               type="password"
               id="password1"
               name="password1"
-              spacing="mt-6"
+              spacing="mb-4"
               size="auth"
               placeholder="비밀번호"
             />
@@ -100,7 +75,7 @@ const SignUpContent: React.FC = () => {
               type="password"
               id="password2"
               name="password2"
-              spacing="mt-6 mb-14"
+              spacing="mb-12"
               size="auth"
               placeholder="비밀번호 확인"
             />
@@ -117,6 +92,7 @@ const SignUpContent: React.FC = () => {
           </form>
         </div>
       </div>
+
       <div className={cn('w-1/2')}>
         <img src="auth-logo.png" className={cn('w-full h-full')} />
       </div>
