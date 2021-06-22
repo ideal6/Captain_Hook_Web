@@ -11,11 +11,11 @@ const SignUpContent: React.FC = () => {
     <Box
       width="960"
       height="640"
-      spacing="flex items-center overflow-hidden"
+      spacing="flex flex-shrink-0 items-center overflow-hidden"
       backgroundColor="white"
       hasShadow={true}
     >
-      <div className={cn('w-1/2 flex justify-center')}>
+      <div className={cn('w-1/2 flex flex-shrink-0 justify-center')}>
         <div className={cn('w-360 pb-3 flex flex-col')}>
           <div className={cn('flex justify-between text-gray-400')}>
             <Link href="./login">
@@ -93,7 +93,7 @@ const SignUpContent: React.FC = () => {
         </div>
       </div>
 
-      <div className={cn('w-1/2')}>
+      <div className={cn('w-480 h-640 flex-shrink-0')}>
         <img src="auth-logo.png" className={cn('w-full h-full')} />
       </div>
     </Box>
