@@ -11,7 +11,7 @@ interface WebhookListProps {
 const WebhookList: React.FC<WebhookListProps> = ({ spacing }) => {
   return (
     <div className={cn(`${spacing}`)}>
-      <div className={cn('flex justify-between w-1632')}>
+      <div className={cn('flex justify-between min-w-1632')}>
         {/* 1. 검색 input */}
         <div>
           <SearchIcon className={cn('absolute w-7 h-7 z-10 pl-3 pt-3')} />

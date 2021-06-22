@@ -1,8 +1,9 @@
+import cn from 'classnames'
 import Head from 'next/head'
 import Link from 'next/link'
 
 const Home: React.FC = () => (
-  <div>
+  <div className={cn('w-full h-full')}>
     <Head>
       <title>Hook선장</title>
     </Head>
