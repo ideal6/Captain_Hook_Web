@@ -3,8 +3,8 @@ import Box from '../../components/atoms/box'
 import Button from '../../components/atoms/button'
 import Input from '../../components/atoms/input'
 import ListBox from '../../components/atoms/listbox'
-import NotificationItem from '../../components/molecules/notificationitem'
 import Table from '../../components/molecules/table'
+import NotificationList from '../../components/organisms/notificationlist'
 
 const Notifications: React.FC = () => {
   return (
@@ -60,15 +60,7 @@ const Notifications: React.FC = () => {
       />
       <br />
       <br />
-      {items.map(({ name, recentDate, webhookId, notificationId }, idx) => (
-        <NotificationItem
-          key={idx}
-          name={name}
-          recentDate={recentDate}
-          webhookId={webhookId}
-          notificationId={notificationId}
-        />
-      ))}
+      <NotificationList spacing="" />
       <br />
       <br />
       <br />
@@ -79,21 +71,6 @@ const Notifications: React.FC = () => {
     </Box>
   )
 }
-
-const items = [
-  {
-    name: 'Notification 1',
-    recentDate: new Date(),
-    webhookId: ['google_calendar'],
-    notificationId: ['gmail', 'telegram', 'discord'],
-  },
-  {
-    name: 'Notification 2',
-    recentDate: new Date(),
-    webhookId: ['github', 'google_drive'],
-    notificationId: ['slack', 'discord'],
-  },
-]
 
 const tableItems = [
   {
