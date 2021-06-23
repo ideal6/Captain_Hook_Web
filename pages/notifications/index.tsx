@@ -1,76 +1,22 @@
-import Head from 'next/head'
-import Box from '../../components/atoms/box'
-import Button from '../../components/atoms/button'
-import Input from '../../components/atoms/input'
-import ListBox from '../../components/atoms/listbox'
-import Table from '../../components/molecules/table'
+import cn from 'classnames'
+import AppBar from '../../components/organisms/appbar'
 import NotificationList from '../../components/organisms/notificationlist'
+import SideBar from '../../components/organisms/sidebar'
 
 const Notifications: React.FC = () => {
   return (
-    <Box
-      width="1920"
-      height="720"
-      spacing="p-3"
-      backgroundColor="white"
-      hasShadow={true}
-    >
-      {' '}
-      <Head>
-        <title>Notifications</title>
-      </Head>
-      <Button
-        type="button"
-        text="Notifications Page"
-        size="big"
-        fontSize="normal"
-        fontColor="white"
-        backgroundColor="primary"
-        // eslint-disable-next-line no-console
-        onClickHandler={(e) => console.log(e)}
-      ></Button>
-      <br />
-      <br />
-      <br />
-      <Input
-        type="email"
-        id="noti_email"
-        name="noti_name"
-        spacing=""
-        placeholder={'Notification Page'}
-        size="normal"
-      ></Input>
-      <br />
-      <br />
-      <br />
-      <ListBox
-        label={'Oink Oink'}
-        placeholder={'Select Item'}
-        options={[
-          'Hello',
-          'EveryOne',
-          'My name is',
-          'Jack',
-          'And',
-          "I'm",
-          'Pig',
-        ]}
-        size={'normal'}
-        labelSize={'big'}
-      />
-      <br />
-      <br />
-      <NotificationList spacing="" />
-      <br />
-      <br />
-      <br />
-      <Table title={['이름', '종류', 'KEY']} content={tableItems}></Table>
-      <br />
-      <br />
-      <br />
-    </Box>
+    <>
+      <AppBar />
+      <div className={cn('flex flex-row h-full bg-gray-100')}>
+        <SideBar />
+        <NotificationList spacing="flex-shrink flex-grow m-4 mb-24" />
+      </div>
+    </>
   )
 }
+
+{
+  /* <Table title={['이름', '종류', 'KEY']} content={tableItems}></Table>
 
 const tableItems = [
   {
@@ -93,6 +39,7 @@ const tableItems = [
     type: '디스코드',
     key: '4',
   },
-]
+] */
+}
 
 export default Notifications

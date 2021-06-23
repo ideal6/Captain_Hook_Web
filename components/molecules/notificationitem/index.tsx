@@ -20,9 +20,9 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
 
   return (
     <Box
-      width="1632"
+      width=""
       height="20"
-      spacing="mb-4 flex"
+      spacing="mb-4 flex flex-row flex-shrink flex-grow"
       backgroundColor="white"
       hasShadow={true}
     >

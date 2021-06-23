@@ -13,9 +13,9 @@ const WebhookItem: React.FC<WebhookItemProps> = ({ id, name, recentDate }) => {
 
   return (
     <Box
-      width="1632"
+      width=""
       height="92"
-      spacing="p-19 pl-34 mb-4 flex flex-row"
+      spacing="p-19 pl-34 mb-4 flex flex-row flex-shrink flex-grow"
       backgroundColor="white"
       hasShadow={true}
     >

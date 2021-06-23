@@ -11,7 +11,7 @@ interface WebhookListProps {
 const WebhookList: React.FC<WebhookListProps> = ({ spacing }) => {
   return (
     <div className={cn(`${spacing}`)}>
-      <div className={cn('flex justify-between min-w-1632')}>
+      <div className={cn('flex justify-between')}>
         {/* 1. 검색 input */}
         <div>
           <SearchIcon className={cn('absolute w-7 h-7 z-10 pl-3 pt-3')} />
@@ -28,13 +28,14 @@ const WebhookList: React.FC<WebhookListProps> = ({ spacing }) => {
         <Button
           type="button"
           size="normal"
-          text="웹훅 추가"
           fontSize="big"
           fontColor="primary"
           backgroundColor="white"
           // eslint-disable-next-line no-console
           onClickHandler={(e) => console.log(e)}
-        />
+        >
+          웹훅 추가
+        </Button>
       </div>
       {/* 3. 웹훅 list */}
       <div>

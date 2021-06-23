@@ -11,7 +11,7 @@ interface NotificationListProps {
 const NotificationList: React.FC<NotificationListProps> = ({ spacing }) => {
   return (
     <div className={cn(`${spacing}`)}>
-      <div className={cn('flex justify-between w-1632')}>
+      <div className={cn('flex justify-between')}>
         {/* 1. 검색 input */}
         <div>
           <SearchIcon className={cn('absolute w-7 h-7 z-10 pl-3 pt-3')} />
@@ -28,13 +28,14 @@ const NotificationList: React.FC<NotificationListProps> = ({ spacing }) => {
         <Button
           type="button"
           size="normal"
-          text="알림 추가"
           fontSize="big"
           fontColor="primary"
           backgroundColor="white"
           // eslint-disable-next-line no-console
           onClickHandler={(e) => console.log(e)}
-        />
+        >
+          알림 추가
+        </Button>
         {/* 3. 알림 list */}
       </div>
       <div>
