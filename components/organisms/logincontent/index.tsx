@@ -56,14 +56,15 @@ const LoginContent: React.FC = () => {
 
             <Button
               type="submit"
-              text="로그인"
               size="big"
               fontSize="normal"
               fontColor="white"
               backgroundColor="primary"
               // eslint-disable-next-line no-console
               onClickHandler={(e) => console.log(e.target)}
-            />
+            >
+              로그인
+            </Button>
           </form>
         </div>
       </div>

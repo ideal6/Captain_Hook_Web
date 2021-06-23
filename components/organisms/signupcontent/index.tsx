@@ -81,14 +81,15 @@ const SignUpContent: React.FC = () => {
             />
             <Button
               type="submit"
-              text="회원가입"
               size="big"
               fontSize="normal"
               fontColor="white"
               backgroundColor="primary"
               // eslint-disable-next-line no-console
               onClickHandler={(e) => console.log(e.target)}
-            />
+            >
+              회원가입
+            </Button>
           </form>
         </div>
       </div>
