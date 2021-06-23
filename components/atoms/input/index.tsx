@@ -1,4 +1,5 @@
 import cn from 'classnames'
+import { ChangeEventHandler } from 'react'
 
 interface InputProps {
   type: 'email' | 'password' | 'search' | 'text' | 'url'
@@ -7,6 +8,8 @@ interface InputProps {
   spacing: string
   size: 'auth' | 'small' | 'normal' | 'big' | 'copy'
   placeholder?: string | undefined
+  value?: string
+  onChange?: ChangeEventHandler<HTMLInputElement>
 }
 
 const inputSize = {
@@ -24,6 +27,8 @@ const Input: React.FC<InputProps> = ({
   spacing,
   size,
   placeholder,
+  value,
+  onChange,
 }) => {
   return (
     <input
@@ -31,6 +36,8 @@ const Input: React.FC<InputProps> = ({
       id={id}
       name={name}
       placeholder={placeholder}
+      value={value}
+      onChange={onChange}
       className={cn(
         `rounded pl-3 pr-2 ${spacing}`,
         'text-base text-gray-800 placeholder-gray-500',
