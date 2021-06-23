@@ -7,7 +7,7 @@ interface TableProps {
   title: Array<string>
   content:
     | Array<{ name: string; type: string; key: string }>
-    | Array<{ name: string; field: string }>
+    | Array<{ name: string; desc: string; field: string }>
 }
 
 const Table: React.FC<TableProps> = ({ title, content }) => {
