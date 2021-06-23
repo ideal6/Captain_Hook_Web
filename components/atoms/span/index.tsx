@@ -11,8 +11,8 @@ const textSize = {
   small: 'text-xs',
   normal: 'text-sm',
   big: 'text-base',
-  title: 'text-5xl',
-  subTitle: 'text-2xl',
+  title: 'text-title',
+  subTitle: 'text-xl',
 }
 
 const Span: React.FC<SpanProps> = ({

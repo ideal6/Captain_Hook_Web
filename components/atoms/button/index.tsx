@@ -2,7 +2,6 @@ import cn from 'classnames'
 
 interface ButtonProps {
   type: 'button' | 'submit'
-  text: string
   size: 'small' | 'normal' | 'big'
   fontSize: 'small' | 'normal' | 'big'
   fontColor: string
@@ -23,8 +22,8 @@ const textSize = {
 }
 
 const Button: React.FC<ButtonProps> = ({
+  children,
   type = 'button',
-  text,
   size,
   fontSize,
   fontColor,
@@ -47,7 +46,7 @@ const Button: React.FC<ButtonProps> = ({
           : `hover:bg-opacity-90`
       )}
     >
-      {text}
+      {children}
     </button>
   )
 }

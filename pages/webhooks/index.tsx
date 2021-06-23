@@ -7,9 +7,9 @@ const Webhooks: React.FC = () => {
   return (
     <>
       <AppBar />
-      <div className={cn('flex flex-row h-full')}>
+      <div className={cn('flex flex-row h-full bg-gray-100')}>
         <SideBar />
-        <WebhookList spacing="m-3" />
+        <WebhookList spacing="flex-shrink flex-grow m-4 mb-24" />
       </div>
     </>
   )
