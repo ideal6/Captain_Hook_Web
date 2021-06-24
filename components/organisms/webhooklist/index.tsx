@@ -1,5 +1,8 @@
 import { SearchIcon } from '@heroicons/react/outline'
 import cn from 'classnames'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { getApiClient } from '../../../utils/getApiClient'
 import Button from '../../atoms/button'
 import Input from '../../atoms/input'
 import WebhookItem from '../../molecules/webhookitem'
@@ -8,7 +11,22 @@ interface WebhookListProps {
   spacing: string
 }
 
+interface WebhookItem {
+  id: number
+  type: string | 'github' | 'google_calendar' | 'custom'
+  name: string
+  recentDate: Date
+}
+
 const WebhookList: React.FC<WebhookListProps> = ({ spacing }) => {
+  const router = useRouter()
+  const [webhooks, setWebhooks] = useState<WebhookItem[]>([])
+  useEffect(() => {
+    const apiClient = getApiClient()
+    apiClient.get('/webhooks').then(({ data }) => {
+      setWebhooks(data)
+    })
+  }, [])
   return (
     <div className={cn(`${spacing}`)}>
       <div className={cn('flex justify-between')}>
@@ -32,24 +50,26 @@ const WebhookList: React.FC<WebhookListProps> = ({ spacing }) => {
           fontColor="primary"
           backgroundColor="white"
           // eslint-disable-next-line no-console
-          onClickHandler={(e) => console.log(e)}
+          onClickHandler={() => {
+            router.push('/webhooks/add')
+          }}
         >
           웹훅 추가
         </Button>
       </div>
       {/* 3. 웹훅 list */}
       <div>
-        {items.map(({ id, name, recentDate }, idx) => (
-          <WebhookItem key={idx} id={id} name={name} recentDate={recentDate} />
+        {webhooks.map(({ id, type, name, recentDate = new Date() }) => (
+          <WebhookItem
+            key={id}
+            type={type}
+            name={name}
+            recentDate={recentDate}
+          />
         ))}
       </div>
     </div>
   )
 }
-
-const items = [
-  { id: 'github', name: '깃허브', recentDate: new Date() },
-  { id: 'google_calendar', name: '구글 캘린더', recentDate: new Date() },
-]
 
 export default WebhookList
