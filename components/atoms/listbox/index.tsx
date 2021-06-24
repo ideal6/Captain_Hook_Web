@@ -3,9 +3,11 @@ import { useCallback, useState } from 'react'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/outline'
 
 interface ListBoxProps {
-  placeholder: string
+  placeholder?: string
   options: Array<string>
   size: 'small' | 'normal' | 'big'
+  initialValue?: string
+  onChange?: (string) => void
 }
 
 const boxSize = {
@@ -14,9 +16,15 @@ const boxSize = {
   big: 'w-360 h-10',
 }
 
-const ListBox: React.FC<ListBoxProps> = ({ placeholder, options, size }) => {
+const ListBox: React.FC<ListBoxProps> = ({
+  placeholder,
+  options,
+  size,
+  initialValue,
+  onChange,
+}) => {
   const [isOpen, setIsOpen] = useState(false)
-  const [selected, setSelected] = useState(placeholder)
+  const [selected, setSelected] = useState(initialValue || placeholder)
 
   const handleClickButton = useCallback(() => {
     setIsOpen(!isOpen)
@@ -26,6 +34,7 @@ const ListBox: React.FC<ListBoxProps> = ({ placeholder, options, size }) => {
     const index = e.currentTarget.dataset.idx
     setSelected(options[index])
     setIsOpen(false)
+    onChange(options[index])
   }, [])
 
   return (
