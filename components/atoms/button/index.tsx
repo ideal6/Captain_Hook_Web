@@ -6,7 +6,7 @@ interface ButtonProps {
   fontSize: 'small' | 'normal' | 'big'
   fontColor: string
   backgroundColor: string
-  onClickHandler: React.MouseEventHandler<HTMLButtonElement>
+  onClickHandler: React.MouseEventHandler<HTMLElement>
 }
 
 const btnSize = {
