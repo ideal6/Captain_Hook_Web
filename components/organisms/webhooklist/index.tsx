@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { getApiClient } from '../../../utils/getApiClient'
 import Button from '../../atoms/button'
 import Input from '../../atoms/input'
+import CopyInput from '../../molecules/copyinput'
 import WebhookItem from '../../molecules/webhookitem'
 
 interface WebhookListProps {
@@ -59,14 +60,25 @@ const WebhookList: React.FC<WebhookListProps> = ({ spacing }) => {
       </div>
       {/* 3. 웹훅 list */}
       <div>
+<<<<<<< HEAD
         {webhooks.map(({ id, type, name, recentDate = new Date() }) => (
           <WebhookItem
             key={id}
             type={type}
+=======
+        {items.map(({ id, name, recentDate }, idx) => (
+          <WebhookItem
+            key={idx}
+            type={id}
+>>>>>>> 3c9d08cb136cb241e23fd6a96e29b9039c0d1a96
             name={name}
             recentDate={recentDate}
           />
         ))}
+      </div>
+
+      <div>
+        <CopyInput></CopyInput>
       </div>
     </div>
   )

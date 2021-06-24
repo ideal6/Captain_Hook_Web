@@ -11,6 +11,8 @@ interface TableProps {
 }
 
 const Table: React.FC<TableProps> = ({ title, content }) => {
+  // eslint-disable-next-line no-console
+  const modifyDataField = (e) => console.log(e)
   return (
     <div
       className={cn(
@@ -31,16 +33,17 @@ const Table: React.FC<TableProps> = ({ title, content }) => {
             <thead className={cn('bg-gray-50')}>
               <tr>
                 {title.map((option, idx) => (
-                  <Th key={idx} option={option} fontColor="text-gray-600">
-                    {option}
-                  </Th>
+                  <Th key={idx} option={option} fontColor="text-gray-600" />
                 ))}
                 <th
                   className={cn(
                     'px-1 py-3 text-right text-xs text-gray-500 tracking-wider'
                   )}
                 >
-                  <PlusCircleIcon className={cn('w-6 h-6 text-highlight')} />
+                  <PlusCircleIcon
+                    onClick={modifyDataField}
+                    className={cn('w-6 h-6 text-highlight')}
+                  />
                 </th>
               </tr>
             </thead>
@@ -48,7 +51,12 @@ const Table: React.FC<TableProps> = ({ title, content }) => {
             <tbody className={cn('bg-white divide-y divide-gray-200')}>
               {content.map((option, idx) => (
                 <tr key={idx}>
-                  <Td key={idx} options={option} />
+                  <Td
+                    key={idx}
+                    record={option}
+                    // eslint-disable-next-line no-console
+                    onClickHandler={(e) => console.log(e)}
+                  />
                 </tr>
               ))}
             </tbody>

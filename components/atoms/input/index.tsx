@@ -30,6 +30,14 @@ const Input: React.FC<InputProps> = ({
   value,
   onChange,
 }) => {
+  const isUrl = () => {
+    if (type === 'url') {
+      return true
+    } else {
+      return false
+    }
+  }
+
   return (
     <input
       type={type}
@@ -38,11 +46,15 @@ const Input: React.FC<InputProps> = ({
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      readOnly={isUrl()}
       className={cn(
         `rounded pl-3 pr-2 ${spacing}`,
         'text-base text-gray-800 placeholder-gray-500',
         'border border-gray-300',
-        'focus:outline-none focus:ring-1 focus:border-primary focus:ring-primary',
+        `focus:outline-none ${
+          isUrl() === false &&
+          'focus:border-primary focus:ring-primary focus:ring-1'
+        }`,
         inputSize[size]
       )}
     />
