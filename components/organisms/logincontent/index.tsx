@@ -4,34 +4,35 @@ import Button from '../../atoms/button'
 import Box from '../../atoms/box'
 import Input from '../../atoms/input'
 import Span from '../../atoms/span'
-import { ChangeEvent, useCallback, useState } from 'react'
-import axios from 'axios'
-import { useRouter } from 'next/router'
+// import { ChangeEvent, useCallback, useState } from 'react'
+// import axios from 'axios'
+// import { useRouter } from 'next/router'
 
 const LoginContent: React.FC = () => {
-  const router = useRouter()
-  const [username, setUsername] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+  // const router = useRouter()
+  // const [username, setUsername] = useState<string>('')
+  // const [password, setPassword] = useState<string>('')
 
-  const loginCallback = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      event.preventDefault()
-      axios
-        .post(
-          `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
-          { username, password },
-          { headers: { 'Access-Control-Allow-Origin': '*' } }
-        )
-        .then(({ data: { access_token } }) => {
-          localStorage.setItem('token', access_token)
-          router.push('/')
-        })
-        .catch(() => {
-          alert('해당하는 계정이 없습니다.')
-        })
-    },
-    [username, password]
-  )
+  // const loginCallback = useCallback(
+  //   (event: ChangeEvent<HTMLElement>) => {
+  //     event.preventDefault()
+  //     axios
+  //       .post(
+  //         `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
+  //         { username, password },
+  //         { headers: { 'Access-Control-Allow-Origin': '*' } }
+  //       )
+  //       .then(({ data: { access_token } }) => {
+  //         localStorage.setItem('token', access_token)
+  //         router.push('/')
+  //       })
+  //       .catch(() => {
+  //         alert('해당하는 계정이 없습니다.')
+  //       })
+  //   },
+  //   [username, password]
+  // )
+
   return (
     <Box
       width="960"
@@ -70,8 +71,8 @@ const LoginContent: React.FC = () => {
               spacing="mt-12 mb-4"
               size="auth"
               placeholder="아이디"
-              value={username}
-              onChange={useCallback((e) => setUsername(e.target.value), [])}
+              // value={username}
+              // onChange={useCallback((e) => setUsername(e.target.value), [])}
             />
             <Input
               type="password"
@@ -80,8 +81,8 @@ const LoginContent: React.FC = () => {
               spacing="mb-10"
               size="auth"
               placeholder="비밀번호"
-              value={password}
-              onChange={useCallback((e) => setPassword(e.target.value), [])}
+              // value={password}
+              // onChange={useCallback((e) => setPassword(e.target.value), [])}
             />
 
             <Button
@@ -91,7 +92,7 @@ const LoginContent: React.FC = () => {
               fontColor="white"
               backgroundColor="primary"
               // eslint-disable-next-line no-console
-              onClickHandler={loginCallback}
+              onClickHandler={(e) => console.log(e)}
             >
               로그인
             </Button>
