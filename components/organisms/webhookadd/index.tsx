@@ -6,11 +6,11 @@ import Divider from '../../atoms/divider'
 import Span from '../../atoms/span'
 import WebhookSetting from '../../molecules/webhooksetting'
 
-const NotificationAdd: React.FC = () => {
+const WebhookAdd: React.FC = () => {
   return (
     <Box
       width=""
-      height=""
+      height="full"
       spacing="flex flex-col flex-grow flex-shrink m-5 mb-24 px-9 py-7"
       backgroundColor="white"
       hasShadow={true}
@@ -35,37 +35,34 @@ const NotificationAdd: React.FC = () => {
       {/* Content */}
       <WebhookSetting />
       {/* Divider */}
-      <div>
-        {' '}
-        <Divider />
-        <br />
-        {/* Footer */}
-        <div className={cn('flex justify-end self-end')}>
-          <Button
-            type="button"
-            size="small"
-            fontSize="normal"
-            fontColor="primary"
-            backgroundColor="white"
-            onClickHandler={(e) => console.log(e)}
-          >
-            취소하기
-          </Button>
-          <span className={cn('ml-5')} />
-          <Button
-            type="button"
-            size="small"
-            fontSize="normal"
-            fontColor="white"
-            backgroundColor="primary"
-            onClickHandler={(e) => console.log(e)}
-          >
-            저장하기
-          </Button>
-        </div>
+      <Divider />
+      <br />
+      {/* Footer */}
+      <div className={cn('flex justify-end self-end')}>
+        <Button
+          type="button"
+          size="small"
+          fontSize="normal"
+          fontColor="primary"
+          backgroundColor="white"
+          onClickHandler={(e) => console.log(e)}
+        >
+          취소하기
+        </Button>
+        <span className={cn('ml-5')} />
+        <Button
+          type="button"
+          size="small"
+          fontSize="normal"
+          fontColor="white"
+          backgroundColor="primary"
+          onClickHandler={(e) => console.log(e)}
+        >
+          저장하기
+        </Button>
       </div>
     </Box>
   )
 }
 
-export default NotificationAdd
+export default WebhookAdd
