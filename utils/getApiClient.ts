@@ -16,8 +16,8 @@ export const getApiClient = () => {
     (error) => {
       if (error.response.status === 401) {
         Router.push('/login')
-        return Promise.resolve({})
-      } else return Promise.reject(error)
+      }
+      return Promise.reject(error)
     }
   )
   return instance
