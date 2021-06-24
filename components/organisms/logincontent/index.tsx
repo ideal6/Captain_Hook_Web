@@ -4,7 +4,7 @@ import Button from '../../atoms/button'
 import Box from '../../atoms/box'
 import Input from '../../atoms/input'
 import Span from '../../atoms/span'
-import { ChangeEvent, useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 
@@ -14,7 +14,7 @@ const LoginContent: React.FC = () => {
   const [password, setPassword] = useState<string>('')
 
   const loginCallback = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
+    (event) => {
       event.preventDefault()
       axios
         .post(
