@@ -5,14 +5,14 @@ import Span from '../../atoms/span'
 
 interface NotificationItemProps {
   name: string
-  recentDate: Date
+  createdAt: Date
   dependentWebhooks: Array<string>
   methods: Array<string>
 }
 
 const NotificationItem: React.FC<NotificationItemProps> = ({
   name,
-  recentDate,
+  createdAt,
   dependentWebhooks,
   methods,
 }) => {
@@ -38,7 +38,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
             {name}
           </Span>
           <Span spacing="" fontSize="normal" fontColor="gray-default">
-            {`최근 받은 날짜: ${recentDate}`}
+            {`최근 받은 날짜: ${createdAt}`}
           </Span>
         </div>
       </div>

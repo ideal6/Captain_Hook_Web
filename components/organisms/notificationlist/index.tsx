@@ -2,6 +2,7 @@ import { SearchIcon } from '@heroicons/react/outline'
 import cn from 'classnames'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import Notification from '../../../types/notification'
 import { getApiClient } from '../../../utils/getApiClient'
 import Button from '../../atoms/button'
 import Input from '../../atoms/input'
@@ -11,17 +12,9 @@ interface NotificationListProps {
   spacing: string
 }
 
-interface NotificationItem {
-  id: number
-  name: string
-  recentDate: Date
-  dependentWebhooks: string[]
-  methods: string[]
-}
-
 const NotificationList: React.FC<NotificationListProps> = ({ spacing }) => {
   const router = useRouter()
-  const [notifications, setNotifications] = useState<NotificationItem[]>([])
+  const [notifications, setNotifications] = useState<Notification[]>([])
   useEffect(() => {
     const apiClient = getApiClient()
     apiClient.get('/notifications').then(({ data }) => {
@@ -62,11 +55,11 @@ const NotificationList: React.FC<NotificationListProps> = ({ spacing }) => {
       </div>
       <div>
         {notifications.map(
-          ({ id, name, recentDate, dependentWebhooks, methods }) => (
+          ({ id, name, createdAt, dependentWebhooks, methods }) => (
             <NotificationItem
               key={id}
               name={name}
-              recentDate={recentDate}
+              createdAt={createdAt}
               dependentWebhooks={dependentWebhooks}
               methods={methods}
             />
