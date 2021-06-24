@@ -1,5 +1,8 @@
 import { SearchIcon } from '@heroicons/react/outline'
 import cn from 'classnames'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { getApiClient } from '../../../utils/getApiClient'
 import Button from '../../atoms/button'
 import Input from '../../atoms/input'
 import NotificationItem from '../../molecules/notificationitem'
@@ -8,7 +11,24 @@ interface NotificationListProps {
   spacing: string
 }
 
+interface NotificationItem {
+  id: number
+  name: string
+  recentDate: Date
+  dependentWebhooks: string[]
+  methods: string[]
+}
+
 const NotificationList: React.FC<NotificationListProps> = ({ spacing }) => {
+  const router = useRouter()
+  const [notifications, setNotifications] = useState<NotificationItem[]>([])
+  useEffect(() => {
+    const apiClient = getApiClient()
+    apiClient.get('/notifications').then(({ data }) => {
+      setNotifications(data)
+    })
+  }, [])
+
   return (
     <div className={cn(`${spacing}`)}>
       <div className={cn('flex justify-between')}>
@@ -32,40 +52,29 @@ const NotificationList: React.FC<NotificationListProps> = ({ spacing }) => {
           fontColor="primary"
           backgroundColor="white"
           // eslint-disable-next-line no-console
-          onClickHandler={(e) => console.log(e)}
+          onClickHandler={() => {
+            router.push('/notifications/add')
+          }}
         >
           알림 추가
         </Button>
         {/* 3. 알림 list */}
       </div>
       <div>
-        {items.map(({ name, recentDate, webhookId, notificationId }, idx) => (
-          <NotificationItem
-            key={idx}
-            name={name}
-            recentDate={recentDate}
-            webhookId={webhookId}
-            notificationId={notificationId}
-          />
-        ))}
+        {notifications.map(
+          ({ id, name, recentDate, dependentWebhooks, methods }) => (
+            <NotificationItem
+              key={id}
+              name={name}
+              recentDate={recentDate}
+              dependentWebhooks={dependentWebhooks}
+              methods={methods}
+            />
+          )
+        )}
       </div>
     </div>
   )
 }
-
-const items = [
-  {
-    name: 'Notification 1',
-    recentDate: new Date(),
-    webhookId: ['google_calendar'],
-    notificationId: ['gmail', 'telegram', 'discord'],
-  },
-  {
-    name: 'Notification 2',
-    recentDate: new Date(),
-    webhookId: ['github', 'google_drive'],
-    notificationId: ['slack', 'discord'],
-  },
-]
 
 export default NotificationList
