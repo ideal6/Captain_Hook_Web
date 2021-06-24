@@ -5,14 +5,10 @@ import Span from '../../atoms/span'
 interface WebhookItemProps {
   type: string
   name: string
-  recentDate: Date
+  createdAt: Date
 }
 
-const WebhookItem: React.FC<WebhookItemProps> = ({
-  type,
-  name,
-  recentDate,
-}) => {
+const WebhookItem: React.FC<WebhookItemProps> = ({ type, name, createdAt }) => {
   // TODO: recentDate 변환
 
   return (
@@ -34,7 +30,7 @@ const WebhookItem: React.FC<WebhookItemProps> = ({
           {name}
         </Span>
         <Span spacing="" fontSize="normal" fontColor="gray-default">
-          {`최근 받은 날짜: ${recentDate}`}
+          {`최근 받은 날짜: ${createdAt}`}
         </Span>
       </div>
     </Box>

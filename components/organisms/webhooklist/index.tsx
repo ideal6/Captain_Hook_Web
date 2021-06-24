@@ -2,6 +2,7 @@ import { SearchIcon } from '@heroicons/react/outline'
 import cn from 'classnames'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import Webhook from '../../../types/webhook'
 import { getApiClient } from '../../../utils/getApiClient'
 import Button from '../../atoms/button'
 import Input from '../../atoms/input'
@@ -11,16 +12,9 @@ interface WebhookListProps {
   spacing: string
 }
 
-interface WebhookItem {
-  id: number
-  type: string | 'github' | 'google_calendar' | 'custom'
-  name: string
-  recentDate: Date
-}
-
 const WebhookList: React.FC<WebhookListProps> = ({ spacing }) => {
   const router = useRouter()
-  const [webhooks, setWebhooks] = useState<WebhookItem[]>([])
+  const [webhooks, setWebhooks] = useState<Webhook[]>([])
   useEffect(() => {
     const apiClient = getApiClient()
     apiClient.get('/webhooks').then(({ data }) => {
@@ -59,13 +53,8 @@ const WebhookList: React.FC<WebhookListProps> = ({ spacing }) => {
       </div>
       {/* 3. 웹훅 list */}
       <div>
-        {webhooks.map(({ id, type, name, recentDate = new Date() }) => (
-          <WebhookItem
-            key={id}
-            type={type}
-            name={name}
-            recentDate={recentDate}
-          />
+        {webhooks.map(({ id, type, name, createdAt = new Date() }) => (
+          <WebhookItem key={id} type={type} name={name} createdAt={createdAt} />
         ))}
       </div>
     </div>
