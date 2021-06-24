@@ -9,7 +9,9 @@ const Add: React.FC = () => {
       <AppBar />
       <div className={cn('flex flex-row h-full bg-gray-100')}>
         <SideBar />
-        <NotificationAdd />
+        <div className="h-screen w-full overflow-scroll">
+          <NotificationAdd />
+        </div>
       </div>
     </>
   )
