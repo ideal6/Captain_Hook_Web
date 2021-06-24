@@ -3,12 +3,16 @@ import Box from '../../atoms/box'
 import Span from '../../atoms/span'
 
 interface WebhookItemProps {
-  id: string
+  type: string
   name: string
   recentDate: Date
 }
 
-const WebhookItem: React.FC<WebhookItemProps> = ({ id, name, recentDate }) => {
+const WebhookItem: React.FC<WebhookItemProps> = ({
+  type,
+  name,
+  recentDate,
+}) => {
   // TODO: recentDate 변환
 
   return (
@@ -19,7 +23,7 @@ const WebhookItem: React.FC<WebhookItemProps> = ({ id, name, recentDate }) => {
       backgroundColor="white"
       hasShadow={true}
     >
-      <img src={`/${id}.png`} className={cn('h-14 w-14 my-auto ml-8 mr-5')} />
+      <img src={`/${type}.png`} className={cn('h-14 w-14 my-auto ml-8 mr-5')} />
       <div className={cn('flex flex-col mt-3.5 mb-4 justify-evenly')}>
         <Span
           spacing=""
