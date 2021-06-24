@@ -2,7 +2,9 @@ import axios from 'axios'
 import Router from 'next/router'
 export const getApiClient = () => {
   const instance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
+    baseURL:
+      process.env.NEXT_PUBLIC_API_URL ||
+      'http://ec2-3-36-47-14.ap-northeast-2.compute.amazonaws.com:3000',
     headers: {
       Authorization: `Bearer ${
         global.window && window && window.localStorage.getItem('token')
