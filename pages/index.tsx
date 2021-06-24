@@ -8,7 +8,10 @@ const Home: React.FC = () => {
   const apiClient = getApiClient()
   const [user, setUser] = useState(undefined)
   useEffect(() => {
-    apiClient.get('/users/me').then(({ data }) => setUser(data))
+    apiClient
+      .get('/users/me')
+      .then(({ data }) => setUser(data))
+      .catch(console.error)
   }, [])
   return (
     <div className={cn('w-full h-full')}>
