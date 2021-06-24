@@ -1,12 +1,21 @@
 /* eslint-disable no-console */
 import cn from 'classnames'
+import Webhook from '../../../types/webhook'
 import Input from '../../atoms/input'
 import ListBox from '../../atoms/listbox'
 import Span from '../../atoms/span'
 import CopyInput from '../copyinput'
 import Table from '../table'
 
-const NotificationSetting: React.FC = () => {
+interface WebhookSettingProps {
+  webhook: Webhook
+  dispatch: any
+}
+
+const WebhookSetting: React.FC<WebhookSettingProps> = ({
+  webhook,
+  dispatch,
+}) => {
   return (
     <>
       {/* 1. 알림 이름 */}
@@ -19,11 +28,15 @@ const NotificationSetting: React.FC = () => {
         </label>
         <Input
           type="text"
-          id="noti-name"
-          name="noti-name"
+          id="name"
+          name="name"
           spacing="my-2"
           size="normal"
           placeholder="웹훅명을 입력해주세요"
+          value={webhook.name}
+          onChange={(e) => {
+            dispatch({ type: 'name', payload: e.currentTarget.value })
+          }}
         />
       </div>
 
@@ -46,6 +59,8 @@ const NotificationSetting: React.FC = () => {
           placeholder="웹훅 서비스 종류를 선택해주세요"
           options={serviceOptions}
           size="big"
+          initialValue={webhook.type}
+          onChange={(data: string) => dispatch({ type: 'type', payload: data })}
         />
       </div>
 
@@ -106,4 +121,4 @@ const serviceOptions = [
   'Telegram',
 ]
 
-export default NotificationSetting
+export default WebhookSetting

@@ -1,12 +1,65 @@
 /* eslint-disable no-console */
 import cn from 'classnames'
+import { useRouter } from 'next/dist/client/router'
+import { useCallback, useReducer } from 'react'
 import Box from '../../../components/atoms/box'
+import Webhook from '../../../types/webhook'
+import { getApiClient } from '../../../utils/getApiClient'
 import Button from '../../atoms/button'
 import Divider from '../../atoms/divider'
 import Span from '../../atoms/span'
 import WebhookSetting from '../../molecules/webhooksetting'
 
+type Action =
+  | { type: 'name'; payload: string }
+  | { type: 'type'; payload: string }
+  | {
+      type: 'fields'
+      payload: {
+        name: string
+        description: string
+        field: string
+      }[]
+    }
+
+function reducer(state: Webhook, action: Action): Webhook {
+  switch (action.type) {
+    case 'name':
+      return { ...state, name: action.payload }
+    case 'type':
+      return { ...state, type: action.payload }
+    case 'fields':
+      return { ...state, fields: action.payload }
+  }
+}
+
 const WebhookAdd: React.FC = () => {
+  const router = useRouter()
+  const [webhook, dispatch] = useReducer(reducer, {
+    name: '',
+    type: 'github',
+    fields: [],
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  })
+  const submitCallback = useCallback(() => {
+    const apiClient = getApiClient()
+    apiClient
+      .post('/webhooks', webhook)
+      .then(({ data }) => {
+        if (data && data.name === webhook.name) {
+          router.push('/webhooks')
+        } else {
+          //TODO: 에러 핸들링? -> 있을 수 없음
+        }
+        console.log(data)
+      })
+      .catch((error) => {
+        console.log(error, error && error.data)
+      })
+  }, [webhook])
+
+  console.log(webhook)
   return (
     <Box
       width=""
@@ -33,7 +86,7 @@ const WebhookAdd: React.FC = () => {
       {/* Divider */}
       <Divider />
       {/* Content */}
-      <WebhookSetting />
+      <WebhookSetting webhook={webhook} dispatch={dispatch} />
       {/* Divider */}
       <Divider />
       <br />
@@ -45,7 +98,9 @@ const WebhookAdd: React.FC = () => {
           fontSize="normal"
           fontColor="primary"
           backgroundColor="white"
-          onClickHandler={(e) => console.log(e)}
+          onClickHandler={() => {
+            router.push('/webhooks')
+          }}
         >
           취소하기
         </Button>
@@ -56,7 +111,7 @@ const WebhookAdd: React.FC = () => {
           fontSize="normal"
           fontColor="white"
           backgroundColor="primary"
-          onClickHandler={(e) => console.log(e)}
+          onClickHandler={submitCallback}
         >
           저장하기
         </Button>
