@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { getApiClient } from '../utils/getApiClient'
+import Modal from '../components/atoms/modal'
 
 const Home: React.FC = () => {
   const apiClient = getApiClient()
@@ -45,6 +46,9 @@ const Home: React.FC = () => {
           </li>
         </ul>
       </main>
+      <Modal>
+        <div className={cn('w-360 h-360')}>정승욱 멍청이</div>
+      </Modal>
     </div>
   )
 }
