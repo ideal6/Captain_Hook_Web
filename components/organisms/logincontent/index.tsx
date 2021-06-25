@@ -16,6 +16,11 @@ const LoginContent: React.FC = () => {
   const loginCallback = useCallback(
     (event) => {
       event.preventDefault()
+
+      if (!username || !password) {
+        return alert('양식을 모두 채워주세요.')
+      }
+
       axios
         .post(
           `${
@@ -32,7 +37,7 @@ const LoginContent: React.FC = () => {
           router.push('/')
         })
         .catch(() => {
-          alert('해당하는 계정이 없습니다.')
+          alert('아이디 혹은 비밀번호가 틀렸습니다.')
         })
     },
     [username, password]
@@ -50,7 +55,7 @@ const LoginContent: React.FC = () => {
         <div className={cn('w-360 pt-4 pb-24 flex flex-col')}>
           <Span fontSize="big" spacing="mb-20 text-right" fontColor="gray-400">
             계정이 없으시다면?{' '}
-            <Link href="./signup">
+            <Link href="/signup">
               <a className={cn('text-base text-primary')}>회원가입</a>
             </Link>
           </Span>
@@ -96,7 +101,6 @@ const LoginContent: React.FC = () => {
               fontSize="normal"
               fontColor="white"
               backgroundColor="primary"
-              // eslint-disable-next-line no-console
               onClickHandler={loginCallback}
             >
               로그인
