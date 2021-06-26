@@ -8,12 +8,19 @@ import Modal from '../components/atoms/modal'
 const Home: React.FC = () => {
   const apiClient = getApiClient()
   const [user, setUser] = useState(undefined)
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggle = () => {
+    setIsOpen(!isOpen)
+  }
+
   useEffect(() => {
     apiClient
       .get('/users/me')
       .then(({ data }) => setUser(data))
       .catch(console.error)
   }, [])
+
   return (
     <div className={cn('w-full h-full')}>
       <Head>
@@ -46,8 +53,17 @@ const Home: React.FC = () => {
           </li>
         </ul>
       </main>
-      <Modal>
-        <div className={cn('w-360 h-360')}>정승욱 멍청이</div>
+
+      <button onClick={toggle}>모달 띄우기</button>
+
+      <Modal
+        isOpen={isOpen}
+        text="저장"
+        closeHandler={toggle}
+        // eslint-disable-next-line no-console
+        confirmHandler={(e) => console.log(e)}
+      >
+        <div className={cn('w-360 h-360')}>모달 내용 넣기</div>
       </Modal>
     </div>
   )
