@@ -5,9 +5,9 @@ import { PlusCircleIcon } from '@heroicons/react/outline'
 
 interface TableProps {
   title: Array<string>
-  content: { name: string; description: string; field: string }[]
+  content: any[]
   addDataField: React.MouseEventHandler<SVGElement>
-  modifyDataField: (number) => React.MouseEventHandler<HTMLSpanElement>
+  modifyDataField: (number) => any | React.MouseEventHandler<HTMLSpanElement>
 }
 
 const Table: React.FC<TableProps> = ({
