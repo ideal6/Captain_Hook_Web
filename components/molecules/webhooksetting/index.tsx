@@ -266,10 +266,11 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
 const serviceOptions = [
   'discord',
   'github',
-  'google_calander',
+  'google_calendar',
   'google_drive',
   'slack',
   'telegram',
+  'custom',
 ]
 
 export default WebhookSetting
