@@ -150,6 +150,7 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
             setModalFormData({ ...webhook.fields[idx], idx })
             setModalStatus(ModalStatus.MODIFY)
           }}
+          filter={['name', 'field', 'description']}
         />
         <Modal
           isOpen={modalStatus !== ModalStatus.CLOSED}
