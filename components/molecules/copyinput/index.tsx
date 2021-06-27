@@ -12,7 +12,7 @@ const CopyInput: React.FC = () => {
   }
 
   return (
-    <div className={cn('w-360 relative flex flex-row')}>
+    <div className={cn('w-360 relative z-0 flex flex-row')}>
       <Input
         type="url"
         id="copy-input"

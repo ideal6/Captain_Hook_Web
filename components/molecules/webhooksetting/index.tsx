@@ -1,8 +1,10 @@
 /* eslint-disable no-console */
 import cn from 'classnames'
+import { useState } from 'react'
 import Webhook from '../../../types/webhook'
 import Input from '../../atoms/input'
 import ListBox from '../../atoms/listbox'
+import Modal from '../../atoms/modal'
 import Span from '../../atoms/span'
 import CopyInput from '../copyinput'
 import Table from '../table'
@@ -16,6 +18,17 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
   webhook,
   dispatch,
 }) => {
+  const [isAddOpen, setIsAddOpen] = useState<boolean>(false)
+  const [isModifyOpen, setIsModifyOpen] = useState<boolean>(false)
+
+  const toggleAdd = () => {
+    setIsAddOpen(!isAddOpen)
+  }
+
+  const toggleModify = () => {
+    setIsModifyOpen(!isModifyOpen)
+  }
+
   return (
     <>
       {/* 1. 알림 이름 */}
@@ -79,7 +92,32 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
             '"+" 버튼을 눌러서 축약할 데이터 필드를 추가해주세요. 축약할 필드를 설정하지 않아도 알림 조건 설정에서 사용할 수 있습니다.'
           }
         </Span>
-        <Table title={['이름', '설명', '필드 위치']} content={tableItems} />
+        <Table
+          title={['이름', '설명', '필드 위치']}
+          content={tableItems}
+          addDataField={toggleAdd}
+          modifyDataField={toggleModify}
+        />
+        {/* 추가 모달 */}
+        <Modal
+          isOpen={isAddOpen}
+          leftText="취소"
+          rightText="추가"
+          leftHandler={toggleAdd}
+          confirmHandler={(e) => console.log(e)}
+        >
+          데이터 필드 축약 추가하기
+        </Modal>
+        {/* 수정 모달 */}
+        <Modal
+          isOpen={isModifyOpen}
+          leftText="삭제"
+          rightText="수정"
+          leftHandler={toggleModify}
+          confirmHandler={(e) => console.log(e)}
+        >
+          데이터 필드 축약 수정하기
+        </Modal>
       </div>
 
       {/* 4. 웹훅 정보 */}

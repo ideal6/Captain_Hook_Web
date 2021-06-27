@@ -1,30 +1,48 @@
 import cn from 'classnames'
+// import { useEffect, useRef } from 'react'
 import Button from '../button'
 
 interface ModalProps {
   isOpen: boolean
-  text: string
-  closeHandler: React.MouseEventHandler<HTMLButtonElement>
+  leftText: string
+  rightText: string
+  leftHandler: React.MouseEventHandler<HTMLButtonElement>
   confirmHandler: React.MouseEventHandler<HTMLButtonElement>
 }
 
 const Modal: React.FC<ModalProps> = ({
   children,
   isOpen,
-  text,
-  closeHandler,
+  leftText,
+  rightText,
+  leftHandler,
   confirmHandler,
 }) => {
+  // const modalElem = useRef()
+  // const clickOutsideHandler = (e) => {
+  //   if (isOpen && !modalElem.current.contains(e.target)) isOpen = false
+  // }
+
+  // useEffect(() => {
+  //   window.addEventListener('click', clickOutsideHandler)
+  //   return () => {
+  //     window.removeEventListener('click', clickOutsideHandler)
+  //   }
+  // }, [])
+
   return (
     isOpen && (
       <div
         className={cn(
-          'absolute inset-0',
+          'absolute inset-0 z-10',
           'bg-black bg-opacity-50',
           'flex justify-center items-center'
         )}
       >
-        <div className={cn('bg-white', 'p-5', 'rounded-lg shadow-md')}>
+        <div
+          className={cn('bg-white', 'p-5', 'rounded-lg shadow-md')}
+          // ref={modalElem}
+        >
           <div className={cn(`flex justify-center`)}>{children}</div>
           <div className={cn('flex justify-end mt-6')}>
             <Button
@@ -33,9 +51,9 @@ const Modal: React.FC<ModalProps> = ({
               fontSize="big"
               fontColor="primary"
               backgroundColor="white"
-              onClickHandler={closeHandler}
+              onClickHandler={leftHandler}
             >
-              취소
+              {leftText}
             </Button>
             <span className={cn('ml-5')} />
             <Button
@@ -46,7 +64,7 @@ const Modal: React.FC<ModalProps> = ({
               backgroundColor="primary"
               onClickHandler={confirmHandler}
             >
-              {text}
+              {rightText}
             </Button>
           </div>
         </div>

@@ -8,11 +8,16 @@ interface TableProps {
   content:
     | Array<{ name: string; type: string; key: string }>
     | Array<{ name: string; desc: string; field: string }>
+  addDataField: React.MouseEventHandler<SVGElement>
+  modifyDataField: React.MouseEventHandler<HTMLSpanElement>
 }
 
-const Table: React.FC<TableProps> = ({ title, content }) => {
-  // eslint-disable-next-line no-console
-  const modifyDataField = (e) => console.log(e)
+const Table: React.FC<TableProps> = ({
+  title,
+  content,
+  addDataField,
+  modifyDataField,
+}) => {
   return (
     <div
       className={cn('flex flex-col flex-shrink-0', '-my-2 sm:-mx-6 lg:-mx-8')}
@@ -36,7 +41,7 @@ const Table: React.FC<TableProps> = ({ title, content }) => {
                   )}
                 >
                   <PlusCircleIcon
-                    onClick={modifyDataField}
+                    onClick={addDataField}
                     className={cn('w-6 h-6 text-highlight cursor-pointer')}
                   />
                 </th>
@@ -49,8 +54,7 @@ const Table: React.FC<TableProps> = ({ title, content }) => {
                   <Td
                     key={idx}
                     record={option}
-                    // eslint-disable-next-line no-console
-                    onClickHandler={(e) => console.log(e)}
+                    onClickHandler={modifyDataField}
                   />
                 </tr>
               ))}
