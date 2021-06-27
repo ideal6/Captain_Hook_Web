@@ -13,6 +13,14 @@ import { getApiClient } from '../../../utils/getApiClient'
 type Action =
   | { type: 'name'; payload: string }
   | { type: 'condition'; payload: string }
+  | {
+      type: 'methods'
+      payload: {
+        name: string
+        type: string
+        key: string
+      }[]
+    }
 
 function reducer(state: Notification, action: Action): Notification {
   switch (action.type) {
@@ -20,7 +28,10 @@ function reducer(state: Notification, action: Action): Notification {
       return { ...state, name: action.payload }
     }
     case 'condition': {
-      return { ...state, name: action.payload }
+      return { ...state, condition: action.payload }
+    }
+    case 'methods': {
+      return { ...state, methods: action.payload }
     }
   }
 }

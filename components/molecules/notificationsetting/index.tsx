@@ -4,6 +4,7 @@ import cn from 'classnames'
 import { useCallback, useState } from 'react'
 import Notification from '../../../types/notification'
 import Input from '../../atoms/input'
+import ListBox from '../../atoms/listbox'
 import Modal from '../../atoms/modal'
 import Span from '../../atoms/span'
 import Table from '../table'
@@ -50,15 +51,31 @@ const NotificationSetting: React.FC<NotificationSettingProps> = ({
     [modalFormData]
   )
 
-  // const onAddFormConfirm = useCallback(() => {}, [modalFormData, notification])
-  // const onModifyFormConfirm = useCallback(() => {}, [
-  //   modalFormData,
-  //   notification,
-  // ])
-  // const onModifyFormDelete = useCallback(() => {}, [
-  //   modalFormData,
-  //   notification,
-  // ])
+  const onAddFormConfirm = useCallback(() => {
+    const { id: _, idx: __, ...addFieldData } = modalFormData
+    dispatch({
+      type: '',
+      payload: [...notification.methods, addFieldData],
+    })
+    setModalStatus(ModalStatus.CLOSED)
+  }, [modalFormData, notification])
+
+  const onModifyFormConfirm = useCallback(() => {
+    const { idx = 0, ...addFieldData } = modalFormData
+    dispatch({
+      type: '',
+      payload: [...notification.methods, addFieldData],
+    })
+  }, [modalFormData, notification])
+
+  const onModifyFormDelete = useCallback(() => {
+    const { idx = 0 } = modalFormData
+    dispatch({
+      type: 'methods',
+      payload: notification.methods.filter((_, fIdx) => fIdx !== idx),
+    })
+    setModalStatus(ModalStatus.CLOSED)
+  }, [modalFormData, notification])
 
   return (
     <>
@@ -103,29 +120,99 @@ const NotificationSetting: React.FC<NotificationSettingProps> = ({
         <Table
           title={['이름', '종류', 'KEY']}
           content={tableItems}
-          addDataField={null}
-          modifyDataField={(idx) => null}
+          addDataField={() => {
+            setModalFormData({ name: '', type: '', key: '' })
+            setModalStatus(ModalStatus.ADD)
+          }}
+          modifyDataField={(idx) => () => {
+            setModalFormData({ ...notification.methods[idx], idx })
+            setModalStatus(ModalStatus.MODIFY)
+          }}
           columns={['name', 'type', 'key']}
         />
         {/* 추가 모달 */}
         <Modal
-          isOpen={null}
-          leftText="취소"
-          rightText="추가"
-          leftHandler={null}
-          confirmHandler={(e) => console.log(e)}
+          isOpen={modalStatus !== ModalStatus.CLOSED}
+          leftText={modalStatus === ModalStatus.ADD ? '취소' : '삭제'}
+          rightText={modalStatus === ModalStatus.ADD ? '추가' : '수정'}
+          leftHandler={
+            modalStatus === ModalStatus.ADD
+              ? () => setModalStatus(ModalStatus.CLOSED)
+              : onModifyFormDelete
+          }
+          confirmHandler={
+            modalStatus === ModalStatus.ADD
+              ? onAddFormConfirm
+              : onModifyFormConfirm
+          }
         >
-          알림 서비스 추가
-        </Modal>
-        {/* 수정 모달 */}
-        <Modal
-          isOpen={null}
-          leftText="삭제"
-          rightText="수정"
-          leftHandler={null}
-          confirmHandler={(e) => console.log(e)}
-        >
-          알림 서비스 수정하기
+          <div className={cn('flex flex-col')}>
+            <Span
+              spacing="mb-5"
+              fontSize="subTitle"
+              fontColor="gray-800"
+              fontWeight="bold"
+            >
+              {modalStatus === ModalStatus.ADD
+                ? '알림 서비스 추가'
+                : '알림 서비스 수정'}
+            </Span>
+            <div className={cn('flex flex-col')}>
+              <label
+                htmlFor="noti-service-name"
+                className={cn('text-base font-bold text-gray-800')}
+              >
+                알림 서비스명
+              </label>
+              <Input
+                type="text"
+                id="noti-service-name"
+                name="noti-service-name"
+                spacing="mt-2 mb-6"
+                size="normal"
+                placeholder="알림 서비스명을 입력해주세요"
+                value={modalFormData.name}
+                onChange={onFormInputChange}
+              />
+            </div>
+            <div className={cn('flex flex-col mb-6')}>
+              <label
+                htmlFor="description"
+                className={cn('text-base font-bold text-gray-800')}
+              >
+                알림 서비스 종류
+              </label>
+              <ListBox
+                placeholder="알림 종류"
+                options={['Discord', 'Email', 'Slack', 'SMS', 'Telegram']}
+                size="normal"
+                // initialValue={notification.methods[notification.id].type}
+                // onChange={() => dispatch({type:'methods', payload: })}
+              />
+            </div>
+            <div className={cn('flex flex-col')}>
+              <label
+                htmlFor="service-key"
+                className={cn('text-base font-bold text-gray-800')}
+              >
+                KEY
+              </label>
+              <Span spacing="mt-1 mb-2" fontSize="small" fontColor="gray-600">
+                SMS는 010-XXXX-XXX 형식, Email은 이메일 형식, 이외에는 KEY 값을
+                입력해주세요.
+              </Span>
+              <Input
+                type="text"
+                id="service-key"
+                name="service-key"
+                spacing="mb-6"
+                size="big"
+                placeholder="KEY 값을 입력해주세요"
+                // value={}
+                // onChange={}
+              />
+            </div>
+          </div>
         </Modal>
       </div>
 
