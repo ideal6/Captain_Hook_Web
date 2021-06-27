@@ -9,7 +9,7 @@ const Add: React.FC = () => {
       <AppBar />
       <div className={cn('flex flex-row flex-grow bg-gray-100')}>
         <SideBar />
-        <div className="flex w-full">
+        <div className={cn('flex w-full')}>
           <WebhookAdd />
         </div>
       </div>

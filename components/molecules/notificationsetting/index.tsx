@@ -32,16 +32,16 @@ const NotificationSetting: React.FC = () => {
           type="text"
           id="noti-name"
           name="noti-name"
-          spacing="my-2"
+          spacing="mt-2 mb-4"
           size="normal"
           placeholder="알림명을 입력해주세요"
         />
       </div>
 
       {/* 2. 알림 서비스 종류 */}
-      <div className={cn('flex flex-col my-4')}>
+      <div className={cn('flex flex-col mt-4 mb-8')}>
         <Span
-          spacing="mb-1"
+          spacing="mb-2"
           fontSize="big"
           fontColor="gray-800"
           fontWeight="bold"
@@ -50,7 +50,7 @@ const NotificationSetting: React.FC = () => {
         </Span>
         <Span spacing="mb-4" fontSize="small" fontColor="gray-600">
           {
-            '"+" 버튼을 눌러서 제공되는 알림 받을 서비스를 선택한 후, 필요 사항을 기재해주세요.'
+            '"+" 버튼을 눌러서 제공되는 알림 서비스 중 알림 받고 싶은 서비스를 선택한 후, 알림명, KEY 등 필요 사항을 기재해주세요.'
           }
         </Span>
 
@@ -83,16 +83,16 @@ const NotificationSetting: React.FC = () => {
       </div>
 
       {/* 3. 알림 조건 설정 */}
-      <div className={cn('flex flex-col my-6')}>
+      <div className={cn('flex flex-col mt-4 mb-10')}>
         <Span
-          spacing="mb-1"
+          spacing="mb-2"
           fontSize="big"
           fontColor="gray-800"
           fontWeight="bold"
         >
           알림 조건 설정
         </Span>
-        <Span spacing="mb-4" fontSize="small" fontColor="gray-600">
+        <Span spacing="mb-5" fontSize="small" fontColor="gray-600">
           참조할 웹훅을 이용하여 알림 조건을 입력해주세요.
         </Span>
         {/* TODO: 알림 조건 세부 설정 */}

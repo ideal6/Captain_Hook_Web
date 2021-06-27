@@ -68,7 +68,7 @@ const WebhookAdd: React.FC = () => {
       backgroundColor="white"
       hasShadow={true}
     >
-      <div>
+      <div className={cn('w-full')}>
         {/* Header */}
         <div className={cn('flex flex-col')}>
           <Span
@@ -88,10 +88,10 @@ const WebhookAdd: React.FC = () => {
         <Divider />
         {/* Content */}
         <WebhookSetting webhook={webhook} dispatch={dispatch} />
-        {/* Divider */}
       </div>
 
       <div className={cn('w-full')}>
+        {/* Divider */}
         <Divider />
         <br />
         {/* Footer */}

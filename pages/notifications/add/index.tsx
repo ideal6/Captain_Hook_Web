@@ -5,15 +5,15 @@ import SideBar from '../../../components/organisms/sidebar'
 
 const Add: React.FC = () => {
   return (
-    <>
+    <div className={cn('flex flex-col h-screen')}>
       <AppBar />
-      <div className={cn('flex flex-row h-full bg-gray-100')}>
+      <div className={cn('flex flex-row flex-grow bg-gray-100')}>
         <SideBar />
-        <div className="h-screen w-full overflow-scroll">
+        <div className={cn('flex w-full')}>
           <NotificationAdd />
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

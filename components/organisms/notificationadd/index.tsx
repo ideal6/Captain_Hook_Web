@@ -11,32 +11,34 @@ const NotificationAdd: React.FC = () => {
     <Box
       width=""
       height=""
-      spacing="flex flex-col flex-grow flex-shrink m-5 mb-24 px-9 py-7"
+      spacing="flex flex-wrap content-between flex-1 m-5 px-9 py-7"
       backgroundColor="white"
       hasShadow={true}
     >
-      {/* Header */}
-      <div className={cn('flex flex-col')}>
-        <Span
-          spacing="mb-1"
-          fontSize="title"
-          fontColor="gray-800"
-          fontWeight="bold"
-        >
-          알림 추가
-        </Span>
-        <Span spacing="" fontSize="big" fontColor="gray-800">
-          존재하는 웹훅 서비스들을 사용하여 알림을 등록합니다.
-        </Span>
+      <div className={cn('w-full')}>
+        {/* Header */}
+        <div className={cn('flex flex-col')}>
+          <Span
+            spacing="mb-1"
+            fontSize="title"
+            fontColor="gray-800"
+            fontWeight="bold"
+          >
+            알림 추가
+          </Span>
+          <Span spacing="" fontSize="big" fontColor="gray-800">
+            존재하는 웹훅 서비스들을 사용하여 알림을 등록합니다.
+          </Span>
+        </div>
+        <br />
+        {/* Divider */}
+        <Divider />
+        {/* Content */}
+        <NotificationSetting />
       </div>
-      <br />
-      {/* Divider */}
-      <Divider />
-      {/* Content */}
-      <NotificationSetting />
-      {/* Divider */}
-      <div>
-        {' '}
+
+      <div className={cn('w-full')}>
+        {/* Divider */}
         <Divider />
         <br />
         {/* Footer */}
