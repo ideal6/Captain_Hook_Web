@@ -1,22 +1,64 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 import cn from 'classnames'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
+import Notification from '../../../types/notification'
 import Input from '../../atoms/input'
 import Modal from '../../atoms/modal'
 import Span from '../../atoms/span'
 import Table from '../table'
 
-const NotificationSetting: React.FC = () => {
-  const [isAddOpen, setIsAddOpen] = useState<boolean>(false)
-  const [isModifyOpen, setIsModifyOpen] = useState<boolean>(false)
+interface NotificationSettingProps {
+  notification: Notification
+  dispatch: any
+}
 
-  const toggleAdd = () => {
-    setIsAddOpen(!isAddOpen)
-  }
+enum ModalStatus {
+  CLOSED,
+  ADD,
+  MODIFY,
+}
 
-  const toggleModify = () => {
-    setIsModifyOpen(!isModifyOpen)
-  }
+interface ModalFormData {
+  id?: number
+  idx?: number
+  name: string
+  type: string
+  key: string
+}
+
+const NotificationSetting: React.FC<NotificationSettingProps> = ({
+  notification,
+  dispatch,
+}) => {
+  const [modalStatus, setModalStatus] = useState<ModalStatus>(
+    ModalStatus.CLOSED
+  )
+  const [modalFormData, setModalFormData] = useState<ModalFormData>({
+    name: '',
+    type: '',
+    key: '',
+  })
+
+  const onFormInputChange = useCallback(
+    (e) => {
+      setModalFormData({
+        ...modalFormData,
+        [e.currentTarget.name]: e.currentTarget.value,
+      })
+    },
+    [modalFormData]
+  )
+
+  // const onAddFormConfirm = useCallback(() => {}, [modalFormData, notification])
+  // const onModifyFormConfirm = useCallback(() => {}, [
+  //   modalFormData,
+  //   notification,
+  // ])
+  // const onModifyFormDelete = useCallback(() => {}, [
+  //   modalFormData,
+  //   notification,
+  // ])
 
   return (
     <>
@@ -35,6 +77,10 @@ const NotificationSetting: React.FC = () => {
           spacing="mt-2 mb-4"
           size="normal"
           placeholder="알림명을 입력해주세요"
+          value={notification.name}
+          onChange={(e) =>
+            dispatch({ type: 'name', payload: e.currentTarget.value })
+          }
         />
       </div>
 
@@ -57,25 +103,25 @@ const NotificationSetting: React.FC = () => {
         <Table
           title={['이름', '종류', 'KEY']}
           content={tableItems}
-          addDataField={toggleAdd}
-          modifyDataField={toggleModify}
+          addDataField={null}
+          modifyDataField={(idx) => null}
         />
         {/* 추가 모달 */}
         <Modal
-          isOpen={isAddOpen}
+          isOpen={null}
           leftText="취소"
           rightText="추가"
-          leftHandler={toggleAdd}
+          leftHandler={null}
           confirmHandler={(e) => console.log(e)}
         >
           알림 서비스 추가
         </Modal>
         {/* 수정 모달 */}
         <Modal
-          isOpen={isModifyOpen}
+          isOpen={null}
           leftText="삭제"
           rightText="수정"
-          leftHandler={toggleModify}
+          leftHandler={null}
           confirmHandler={(e) => console.log(e)}
         >
           알림 서비스 수정하기
