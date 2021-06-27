@@ -17,6 +17,9 @@ export const getApiClient = () => {
       if (error.response.status === 401) {
         Router.push('/login')
       }
+      if (error?.response?.data?.message)
+        // eslint-disable-next-line no-console
+        console.log(error.response.data.message)
       return Promise.reject(error)
     }
   )
