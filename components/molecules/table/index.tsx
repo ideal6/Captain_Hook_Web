@@ -8,6 +8,7 @@ interface TableProps {
   content: any[]
   addDataField: React.MouseEventHandler<SVGElement>
   modifyDataField: (number) => any | React.MouseEventHandler<HTMLSpanElement>
+  filter?: string[]
 }
 
 const Table: React.FC<TableProps> = ({
@@ -15,6 +16,7 @@ const Table: React.FC<TableProps> = ({
   content,
   addDataField,
   modifyDataField,
+  filter,
 }) => {
   return (
     <div
@@ -53,6 +55,7 @@ const Table: React.FC<TableProps> = ({
                     key={idx}
                     record={option}
                     onClickHandler={modifyDataField(idx)}
+                    filter={filter}
                   />
                 </tr>
               ))}
