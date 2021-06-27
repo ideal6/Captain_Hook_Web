@@ -34,7 +34,7 @@ const Modal: React.FC<ModalProps> = ({
     isOpen && (
       <div
         className={cn(
-          'absolute inset-0 z-10',
+          'fixed inset-0 z-10',
           'bg-black bg-opacity-50',
           'flex justify-center items-center'
         )}
