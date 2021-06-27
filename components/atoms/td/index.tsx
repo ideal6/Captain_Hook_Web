@@ -2,7 +2,7 @@ import cn from 'classnames'
 
 interface TdProps {
   // eslint-disable-next-line @typescript-eslint/ban-types
-  record: Array<object>
+  record: any
   onClickHandler: React.MouseEventHandler<HTMLElement>
 }
 
