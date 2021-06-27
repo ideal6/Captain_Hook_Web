@@ -6,8 +6,12 @@ import Span from '../../atoms/span'
 interface NotificationItemProps {
   name: string
   createdAt: string
-  dependentWebhooks: Array<string>
-  methods: Array<string>
+  dependentWebhooks: string[]
+  methods: {
+    name: string
+    type: string
+    key: string
+  }[]
 }
 
 const NotificationItem: React.FC<NotificationItemProps> = ({
@@ -55,10 +59,10 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
           ))}
         </div>
         <div className={cn('flex flex-row mr-6')}>
-          {methods.map((id, idx) => (
+          {methods.map(({ type }, idx) => (
             <img
               key={idx}
-              src={`/${id}.png`}
+              src={`/${type}.png`}
               className={cn('w-auto h-8 my-auto ml-3')}
             />
           ))}
