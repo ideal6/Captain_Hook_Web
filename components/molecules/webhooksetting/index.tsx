@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import cn from 'classnames'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import Webhook from '../../../types/webhook'
 import Input from '../../atoms/input'
 import ListBox from '../../atoms/listbox'
@@ -14,20 +14,67 @@ interface WebhookSettingProps {
   dispatch: any
 }
 
+enum ModalStatus {
+  CLOSED,
+  ADD,
+  MODIFY,
+}
+
+interface ModalFormData {
+  id?: number
+  idx?: number
+  name: string
+  description: string
+  field: string
+}
+
 const WebhookSetting: React.FC<WebhookSettingProps> = ({
   webhook,
   dispatch,
 }) => {
-  const [isAddOpen, setIsAddOpen] = useState<boolean>(false)
-  const [isModifyOpen, setIsModifyOpen] = useState<boolean>(false)
+  const [modalStatus, setModalStatus] = useState<ModalStatus>(
+    ModalStatus.CLOSED
+  )
+  const [modalFormData, setModalFormData] = useState<ModalFormData>({
+    name: '',
+    description: '',
+    field: '',
+  })
+  const onFormInputChange = useCallback(
+    (e) => {
+      setModalFormData({
+        ...modalFormData,
+        [e.currentTarget.name]: e.currentTarget.value,
+      })
+    },
+    [modalFormData]
+  )
+  const onAddFormConfirm = useCallback(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { id: _, idx: __, ...addfieldData } = modalFormData
+    dispatch({ type: 'fields', payload: [...webhook.fields, addfieldData] })
+    setModalStatus(ModalStatus.CLOSED)
+  }, [modalFormData, webhook])
 
-  const toggleAdd = () => {
-    setIsAddOpen(!isAddOpen)
-  }
+  const onModifyFormConfirm = useCallback(() => {
+    const { idx = 0, ...modifyFieldData } = modalFormData
+    dispatch({
+      type: 'fields',
+      payload: webhook.fields.map((field, mIdx) =>
+        mIdx !== idx ? field : modifyFieldData
+      ),
+    })
+    setModalStatus(ModalStatus.CLOSED)
+  }, [modalFormData, webhook])
 
-  const toggleModify = () => {
-    setIsModifyOpen(!isModifyOpen)
-  }
+  const onModifyFormDelete = useCallback(() => {
+    const { idx = 0 } = modalFormData
+    dispatch({
+      type: 'fields',
+      payload: webhook.fields.filter((_, fIdx) => fIdx !== idx),
+    })
+    setModalStatus(ModalStatus.CLOSED)
+  }, [modalFormData, webhook])
 
   return (
     <>
@@ -94,17 +141,30 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
         </Span>
         <Table
           title={['이름', '설명', '필드 위치']}
-          content={tableItems}
-          addDataField={toggleAdd}
-          modifyDataField={toggleModify}
+          content={webhook.fields}
+          addDataField={() => {
+            setModalFormData({ field: '', name: '', description: '' })
+            setModalStatus(ModalStatus.ADD)
+          }}
+          modifyDataField={(idx) => () => {
+            setModalFormData({ ...webhook.fields[idx], idx })
+            setModalStatus(ModalStatus.MODIFY)
+          }}
         />
-        {/* 추가 모달 */}
         <Modal
-          isOpen={isAddOpen}
-          leftText="취소"
-          rightText="추가"
-          leftHandler={toggleAdd}
-          confirmHandler={(e) => console.log(e)}
+          isOpen={modalStatus !== ModalStatus.CLOSED}
+          leftText={modalStatus === ModalStatus.ADD ? '취소' : '삭제'}
+          rightText={modalStatus === ModalStatus.ADD ? '추가' : '수정'}
+          leftHandler={
+            modalStatus === ModalStatus.ADD
+              ? () => setModalStatus(ModalStatus.CLOSED)
+              : onModifyFormDelete
+          }
+          confirmHandler={
+            modalStatus === ModalStatus.ADD
+              ? onAddFormConfirm
+              : onModifyFormConfirm
+          }
         >
           <div className={cn('flex flex-col')}>
             <Span
@@ -113,7 +173,9 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
               fontColor="gray-800"
               fontWeight="bold"
             >
-              데이터 필드 추가
+              {modalStatus === ModalStatus.ADD
+                ? '데이터 필드 추가'
+                : '데이터 필드 수정'}
             </Span>
             <div className={cn('flex flex-col')}>
               <label
@@ -124,13 +186,13 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
               </label>
               <Input
                 type="text"
-                id="field-name"
-                name="field-name"
+                id="name"
+                name="name"
                 spacing="mt-2 mb-6"
                 size="normal"
                 placeholder="필드 이름을 입력해주세요"
-                // value={}
-                onChange={(e) => console.log(e)}
+                value={modalFormData.name}
+                onChange={onFormInputChange}
               />
             </div>
             <div className={cn('flex flex-col')}>
@@ -147,10 +209,10 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
                 spacing="mt-2 mb-6"
                 size="big"
                 placeholder="필드에 대한 설명을 입력해주세요"
-                // value={}
-                onChange={(e) => console.log(e)}
+                value={modalFormData.description}
+                onChange={onFormInputChange}
               />
-            </div>{' '}
+            </div>
             <div className={cn('flex flex-col')}>
               <label
                 htmlFor="description"
@@ -168,26 +230,16 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
               </Span>
               <Input
                 type="text"
-                id="description"
-                name="description"
+                id="field"
+                name="field"
                 spacing="mb-3"
                 size="big"
                 placeholder="필드 위치를 입력해주세요. 예) .user.name"
-                // value={}
-                onChange={(e) => console.log(e)}
+                value={modalFormData.field}
+                onChange={onFormInputChange}
               />
             </div>
           </div>
-        </Modal>
-        {/* 수정 모달 */}
-        <Modal
-          isOpen={isModifyOpen}
-          leftText="삭제"
-          rightText="수정"
-          leftHandler={toggleModify}
-          confirmHandler={(e) => console.log(e)}
-        >
-          데이터 필드 축약 수정하기
         </Modal>
       </div>
 
@@ -211,23 +263,13 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
   )
 }
 
-const tableItems = [
-  { name: 'Name', desc: '사용자 이름', field: '.user.name' },
-  { name: 'Email', desc: '사용자 이메일 주소', field: '.user.email' },
-  {
-    name: 'Repository Names',
-    desc: '레포지토리 이름들',
-    field: '.repository[any].name',
-  },
-]
-
 const serviceOptions = [
-  'Discord',
-  'Github',
-  'Google calendar',
-  'Google drive',
-  'Slack',
-  'Telegram',
+  'discord',
+  'github',
+  'google_calander',
+  'google_drive',
+  'slack',
+  'telegram',
 ]
 
 export default WebhookSetting
