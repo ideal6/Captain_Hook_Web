@@ -54,7 +54,13 @@ const WebhookList: React.FC<WebhookListProps> = ({ spacing }) => {
       {/* 3. 웹훅 list */}
       <div>
         {webhooks.map(({ id, type, name, createdAt }) => (
-          <WebhookItem key={id} type={type} name={name} createdAt={createdAt} />
+          <WebhookItem
+            key={id}
+            id={id}
+            type={type}
+            name={name}
+            createdAt={createdAt}
+          />
         ))}
       </div>
     </div>
