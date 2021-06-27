@@ -105,6 +105,7 @@ const NotificationSetting: React.FC<NotificationSettingProps> = ({
           content={tableItems}
           addDataField={null}
           modifyDataField={(idx) => null}
+          columns={['name', 'type', 'key']}
         />
         {/* 추가 모달 */}
         <Modal
