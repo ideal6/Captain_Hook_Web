@@ -84,7 +84,7 @@ const WebhookModify: React.FC = () => {
               fontColor="gray-800"
               fontWeight="bold"
             >
-              웹훅 추가
+              웹훅 수정
             </Span>
             <Span spacing="" fontSize="big" fontColor="gray-800">
               존재하는 웹훅 서비스를 설정하고 URL을 등록합니다.
