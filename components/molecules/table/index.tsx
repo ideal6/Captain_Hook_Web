@@ -4,11 +4,11 @@ import cn from 'classnames'
 import { PlusCircleIcon } from '@heroicons/react/outline'
 
 interface TableProps {
-  title: Array<string>
+  title: string[]
   content: any[]
   addDataField: React.MouseEventHandler<SVGElement>
   modifyDataField: (number) => any | React.MouseEventHandler<HTMLSpanElement>
-  filter?: string[]
+  columns?: string[]
 }
 
 const Table: React.FC<TableProps> = ({
@@ -16,7 +16,7 @@ const Table: React.FC<TableProps> = ({
   content,
   addDataField,
   modifyDataField,
-  filter,
+  columns,
 }) => {
   return (
     <div
@@ -55,7 +55,7 @@ const Table: React.FC<TableProps> = ({
                     key={idx}
                     record={option}
                     onClickHandler={modifyDataField(idx)}
-                    filter={filter}
+                    columns={columns}
                   />
                 </tr>
               ))}
