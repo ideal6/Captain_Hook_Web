@@ -38,7 +38,19 @@ const WebhookAdd: React.FC = () => {
   const [webhook, dispatch] = useReducer(reducer, {
     name: '',
     type: 'github',
-    fields: [],
+    fields: [
+      { name: 'Name', description: '사용자 이름', field: '.user.name' },
+      {
+        name: 'Email',
+        description: '사용자 이메일 주소',
+        field: '.user.email',
+      },
+      {
+        name: 'Repository Names',
+        description: '레포지토리 이름들',
+        field: '.repository[any].name',
+      },
+    ],
     createdAt: '',
     updatedAt: '',
   })
