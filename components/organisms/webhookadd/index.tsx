@@ -39,8 +39,8 @@ const WebhookAdd: React.FC = () => {
     name: '',
     type: 'github',
     fields: [],
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    createdAt: '',
+    updatedAt: '',
   })
   const submitCallback = useCallback(() => {
     const apiClient = getApiClient()

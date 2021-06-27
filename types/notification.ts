@@ -5,6 +5,6 @@ export default interface Notification {
   histories: []
   dependentWebhooks: string[]
   methods: string[]
-  createdAt: Date
-  updatedAt: Date
+  createdAt: string
+  updatedAt: string
 }

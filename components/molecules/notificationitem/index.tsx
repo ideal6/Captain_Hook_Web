@@ -5,7 +5,7 @@ import Span from '../../atoms/span'
 
 interface NotificationItemProps {
   name: string
-  createdAt: Date
+  createdAt: string
   dependentWebhooks: Array<string>
   methods: Array<string>
 }
@@ -16,7 +16,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
   dependentWebhooks,
   methods,
 }) => {
-  // TODO: recentDate 변환
+  const time = new Date(createdAt)
 
   return (
     <Box
@@ -38,7 +38,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
             {name}
           </Span>
           <Span spacing="" fontSize="normal" fontColor="gray-default">
-            {`최근 받은 날짜: ${createdAt}`}
+            {`생성 날짜: ${time.toLocaleString()}`}
           </Span>
         </div>
       </div>

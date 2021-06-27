@@ -7,6 +7,6 @@ export default interface Webhook {
     description: string
     field: string
   }[]
-  createdAt: Date
-  updatedAt: Date
+  createdAt: string
+  updatedAt: string
 }

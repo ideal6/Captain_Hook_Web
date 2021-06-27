@@ -106,7 +106,78 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
           leftHandler={toggleAdd}
           confirmHandler={(e) => console.log(e)}
         >
-          데이터 필드 축약 추가하기
+          <div className={cn('flex flex-col')}>
+            <Span
+              spacing="mb-5"
+              fontSize="subTitle"
+              fontColor="gray-800"
+              fontWeight="bold"
+            >
+              데이터 필드 추가
+            </Span>
+            <div className={cn('flex flex-col')}>
+              <label
+                htmlFor="field-name"
+                className={cn('text-base font-bold text-gray-800')}
+              >
+                이름
+              </label>
+              <Input
+                type="text"
+                id="field-name"
+                name="field-name"
+                spacing="mt-2 mb-6"
+                size="normal"
+                placeholder="필드 이름을 입력해주세요"
+                // value={}
+                onChange={(e) => console.log(e)}
+              />
+            </div>
+            <div className={cn('flex flex-col')}>
+              <label
+                htmlFor="description"
+                className={cn('text-base font-bold text-gray-800')}
+              >
+                설명
+              </label>
+              <Input
+                type="text"
+                id="description"
+                name="description"
+                spacing="mt-2 mb-6"
+                size="big"
+                placeholder="필드에 대한 설명을 입력해주세요"
+                // value={}
+                onChange={(e) => console.log(e)}
+              />
+            </div>{' '}
+            <div className={cn('flex flex-col')}>
+              <label
+                htmlFor="description"
+                className={cn('text-base font-bold text-gray-800')}
+              >
+                필드 위치
+              </label>
+              <Span spacing="mt-2 mb-1" fontSize="small" fontColor="gray-600">
+                {
+                  '필드의 시작은 "."으로 시작하며, 원하는 하위 필드에 진입하려면 "."을 사용합니다.'
+                }
+              </Span>
+              <Span spacing="mb-3" fontSize="small" fontColor="gray-600">
+                {'예) 사용자 이름: ".user.name"'}
+              </Span>
+              <Input
+                type="text"
+                id="description"
+                name="description"
+                spacing="mb-3"
+                size="big"
+                placeholder="필드 위치를 입력해주세요. 예) .user.name"
+                // value={}
+                onChange={(e) => console.log(e)}
+              />
+            </div>
+          </div>
         </Modal>
         {/* 수정 모달 */}
         <Modal
