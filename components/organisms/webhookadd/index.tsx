@@ -51,9 +51,7 @@ const WebhookAdd: React.FC = () => {
         field: '.repository[any].name',
       },
     ],
-    createdAt: '',
-    updatedAt: '',
-  })
+  } as Webhook)
   const submitCallback = useCallback(() => {
     const apiClient = getApiClient()
     apiClient
