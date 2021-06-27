@@ -63,58 +63,63 @@ const WebhookAdd: React.FC = () => {
   return (
     <Box
       width=""
-      height="full"
-      spacing="flex flex-col flex-grow flex-shrink m-5 mb-24 px-9 py-7"
+      height=""
+      spacing="flex flex-wrap content-between flex-1 m-5 px-9 py-7"
       backgroundColor="white"
       hasShadow={true}
     >
-      {/* Header */}
-      <div className={cn('flex flex-col')}>
-        <Span
-          spacing="mb-1"
-          fontSize="title"
-          fontColor="gray-800"
-          fontWeight="bold"
-        >
-          웹훅 추가
-        </Span>
-        <Span spacing="" fontSize="big" fontColor="gray-800">
-          존재하는 웹훅 서비스를 설정하고 URL을 등록합니다.
-        </Span>
+      <div>
+        {/* Header */}
+        <div className={cn('flex flex-col')}>
+          <Span
+            spacing="mb-1"
+            fontSize="title"
+            fontColor="gray-800"
+            fontWeight="bold"
+          >
+            웹훅 추가
+          </Span>
+          <Span spacing="" fontSize="big" fontColor="gray-800">
+            존재하는 웹훅 서비스를 설정하고 URL을 등록합니다.
+          </Span>
+        </div>
+        <br />
+        {/* Divider */}
+        <Divider />
+        {/* Content */}
+        <WebhookSetting webhook={webhook} dispatch={dispatch} />
+        {/* Divider */}
       </div>
-      <br />
-      {/* Divider */}
-      <Divider />
-      {/* Content */}
-      <WebhookSetting webhook={webhook} dispatch={dispatch} />
-      {/* Divider */}
-      <Divider />
-      <br />
-      {/* Footer */}
-      <div className={cn('flex justify-end self-end')}>
-        <Button
-          type="button"
-          size="small"
-          fontSize="normal"
-          fontColor="primary"
-          backgroundColor="white"
-          onClickHandler={() => {
-            router.push('/webhooks')
-          }}
-        >
-          취소하기
-        </Button>
-        <span className={cn('ml-5')} />
-        <Button
-          type="button"
-          size="small"
-          fontSize="normal"
-          fontColor="white"
-          backgroundColor="primary"
-          onClickHandler={submitCallback}
-        >
-          저장하기
-        </Button>
+
+      <div className={cn('w-full')}>
+        <Divider />
+        <br />
+        {/* Footer */}
+        <div className={cn('flex justify-end self-end')}>
+          <Button
+            type="button"
+            size="small"
+            fontSize="normal"
+            fontColor="primary"
+            backgroundColor="white"
+            onClickHandler={() => {
+              router.push('/webhooks')
+            }}
+          >
+            취소하기
+          </Button>
+          <span className={cn('ml-5')} />
+          <Button
+            type="button"
+            size="small"
+            fontSize="normal"
+            fontColor="white"
+            backgroundColor="primary"
+            onClickHandler={submitCallback}
+          >
+            저장하기
+          </Button>
+        </div>
       </div>
     </Box>
   )

@@ -15,21 +15,16 @@ const Table: React.FC<TableProps> = ({ title, content }) => {
   const modifyDataField = (e) => console.log(e)
   return (
     <div
-      className={cn(
-        'flex flex-col flex-1',
-        '-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'
-      )}
+      className={cn('flex flex-col flex-shrink-0', '-my-2 sm:-mx-6 lg:-mx-8')}
     >
-      <div
-        className={cn('py-2 align-middle inline-block w-6/12 sm:px-6 lg:px-8')}
-      >
+      <div className={cn('py-2 align-middle inline-block sm:px-6 lg:px-8')}>
         <div
           className={cn(
             'border border-gray-300 border-opacity-40 rounded',
             'shadow overflow-hidden border-b border-gray-200 sm:rounded-lg'
           )}
         >
-          <table className={cn('w-full divide-y divide-gray-200')}>
+          <table className={cn('table-auto w-full divide-y divide-gray-200')}>
             <thead className={cn('bg-gray-50')}>
               <tr>
                 {title.map((option, idx) => (
@@ -42,7 +37,7 @@ const Table: React.FC<TableProps> = ({ title, content }) => {
                 >
                   <PlusCircleIcon
                     onClick={modifyDataField}
-                    className={cn('w-6 h-6 text-highlight')}
+                    className={cn('w-6 h-6 text-highlight cursor-pointer')}
                   />
                 </th>
               </tr>

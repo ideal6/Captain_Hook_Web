@@ -6,7 +6,11 @@ const SideBar: React.FC = () => {
   const router = useRouter()
 
   return (
-    <div className={cn('flex-shrink-0 w-247 p-7 h-full bg-secondary')}>
+    <div
+      className={cn(
+        'sticky left-0 flex-shrink-0 flex-grow w-247 p-7 bg-secondary'
+      )}
+    >
       <ul>
         <li
           className={cn(

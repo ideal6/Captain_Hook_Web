@@ -5,15 +5,15 @@ import WebhookAdd from '../../../components/organisms/webhookadd'
 
 const Add: React.FC = () => {
   return (
-    <>
+    <div className={cn('flex flex-col h-screen')}>
       <AppBar />
-      <div className={cn('flex flex-row h-full bg-gray-100')}>
+      <div className={cn('flex flex-row flex-grow bg-gray-100')}>
         <SideBar />
-        <div className="h-screen w-full overflow-scroll">
+        <div className="flex w-full">
           <WebhookAdd />
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

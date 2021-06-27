@@ -30,7 +30,7 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
           type="text"
           id="name"
           name="name"
-          spacing="my-2"
+          spacing="mt-2 mb-4"
           size="normal"
           placeholder="웹훅명을 입력해주세요"
           value={webhook.name}
@@ -41,9 +41,9 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
       </div>
 
       {/* 2. 웹훅 서비스 종류 */}
-      <div className={cn('flex flex-col my-4')}>
+      <div className={cn('flex flex-col mt-4 mb-8')}>
         <Span
-          spacing="mb-1"
+          spacing="mb-2"
           fontSize="big"
           fontColor="gray-800"
           fontWeight="bold"
@@ -65,16 +65,16 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
       </div>
 
       {/* 3. 데이터 필드 축약 */}
-      <div className={cn('flex flex-col my-4')}>
+      <div className={cn('flex flex-col mt-4 mb-10')}>
         <Span
-          spacing="mb-1"
+          spacing="mb-2"
           fontSize="big"
           fontColor="gray-800"
           fontWeight="bold"
         >
           데이터 필드 축약
         </Span>
-        <Span spacing="mb-4" fontSize="small" fontColor="gray-600">
+        <Span spacing="mb-5" fontSize="small" fontColor="gray-600">
           {
             '"+" 버튼을 눌러서 축약할 데이터 필드를 추가해주세요. 축약할 필드를 설정하지 않아도 알림 조건 설정에서 사용할 수 있습니다.'
           }
@@ -83,7 +83,7 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
       </div>
 
       {/* 4. 웹훅 정보 */}
-      <div className={cn('flex flex-col my-6')}>
+      <div className={cn('flex flex-col mt-5 my-10')}>
         <Span
           spacing="mb-1"
           fontSize="big"

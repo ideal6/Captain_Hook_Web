@@ -11,7 +11,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         body > div:first-child,
         div#__next {
           height: 100%;
-          overflow: hidden;
         }
       `}</style>
       <Component {...pageProps} />
