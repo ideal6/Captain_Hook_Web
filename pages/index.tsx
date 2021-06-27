@@ -8,7 +8,7 @@ import Modal from '../components/atoms/modal'
 const Home: React.FC = () => {
   const apiClient = getApiClient()
   const [user, setUser] = useState(undefined)
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const toggle = () => {
     setIsOpen(!isOpen)
@@ -58,8 +58,9 @@ const Home: React.FC = () => {
 
       <Modal
         isOpen={isOpen}
-        text="저장"
-        closeHandler={toggle}
+        leftText="취소"
+        rightText="저장"
+        leftHandler={toggle}
         // eslint-disable-next-line no-console
         confirmHandler={(e) => console.log(e)}
       >

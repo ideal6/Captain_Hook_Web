@@ -1,10 +1,23 @@
 /* eslint-disable no-console */
 import cn from 'classnames'
+import { useState } from 'react'
 import Input from '../../atoms/input'
+import Modal from '../../atoms/modal'
 import Span from '../../atoms/span'
 import Table from '../table'
 
 const NotificationSetting: React.FC = () => {
+  const [isAddOpen, setIsAddOpen] = useState<boolean>(false)
+  const [isModifyOpen, setIsModifyOpen] = useState<boolean>(false)
+
+  const toggleAdd = () => {
+    setIsAddOpen(!isAddOpen)
+  }
+
+  const toggleModify = () => {
+    setIsModifyOpen(!isModifyOpen)
+  }
+
   return (
     <>
       {/* 1. 알림 이름 */}
@@ -40,7 +53,33 @@ const NotificationSetting: React.FC = () => {
             '"+" 버튼을 눌러서 제공되는 알림 받을 서비스를 선택한 후, 필요 사항을 기재해주세요.'
           }
         </Span>
-        <Table title={['이름', '종류', 'KEY']} content={tableItems} />
+
+        <Table
+          title={['이름', '종류', 'KEY']}
+          content={tableItems}
+          addDataField={toggleAdd}
+          modifyDataField={toggleModify}
+        />
+        {/* 추가 모달 */}
+        <Modal
+          isOpen={isAddOpen}
+          leftText="취소"
+          rightText="추가"
+          leftHandler={toggleAdd}
+          confirmHandler={(e) => console.log(e)}
+        >
+          알림 서비스 추가
+        </Modal>
+        {/* 수정 모달 */}
+        <Modal
+          isOpen={isModifyOpen}
+          leftText="삭제"
+          rightText="수정"
+          leftHandler={toggleModify}
+          confirmHandler={(e) => console.log(e)}
+        >
+          알림 서비스 수정하기
+        </Modal>
       </div>
 
       {/* 3. 알림 조건 설정 */}
