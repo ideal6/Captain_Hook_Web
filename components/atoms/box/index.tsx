@@ -6,6 +6,7 @@ interface BoxProps {
   spacing: string
   backgroundColor: string
   hasShadow: boolean
+  onClick?: () => void
 }
 
 const Box: React.FC<BoxProps> = ({
@@ -15,6 +16,7 @@ const Box: React.FC<BoxProps> = ({
   backgroundColor,
   hasShadow,
   children,
+  onClick,
 }) => {
   return (
     <div
@@ -24,6 +26,7 @@ const Box: React.FC<BoxProps> = ({
         `bg-${backgroundColor}`,
         hasShadow ? 'shadow-primary' : ''
       )}
+      onClick={onClick}
     >
       {children}
     </div>
