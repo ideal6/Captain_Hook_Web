@@ -60,8 +60,6 @@ const NotificationAdd: React.FC = () => {
       .catch(console.error)
   }, [notification])
 
-  console.log(notification)
-
   return (
     <Box
       width=""
