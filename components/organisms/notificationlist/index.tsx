@@ -57,6 +57,7 @@ const NotificationList: React.FC<NotificationListProps> = ({ spacing }) => {
         {notifications.map(
           ({ id, name, createdAt, dependentWebhooks, methods }) => (
             <NotificationItem
+              id={id}
               key={id}
               name={name}
               createdAt={createdAt}
