@@ -51,21 +51,29 @@ const NotificationSetting: React.FC<NotificationSettingProps> = ({
     [modalFormData]
   )
 
+  const onFormListBoxChange = useCallback((type) => {
+    console.log(modalFormData)
+    setModalFormData((modalFormData) => ({ ...modalFormData, type }))
+  }, [])
+
   const onAddFormConfirm = useCallback(() => {
-    const { id: _, idx: __, ...addFieldData } = modalFormData
+    const { id: _, idx: __, ...addMethodData } = modalFormData
     dispatch({
-      type: '',
-      payload: [...notification.methods, addFieldData],
+      type: 'methods',
+      payload: [...notification.methods, addMethodData],
     })
     setModalStatus(ModalStatus.CLOSED)
   }, [modalFormData, notification])
 
   const onModifyFormConfirm = useCallback(() => {
-    const { idx = 0, ...addFieldData } = modalFormData
+    const { idx = 0, ...modifyMethodData } = modalFormData
     dispatch({
-      type: '',
-      payload: [...notification.methods, addFieldData],
+      type: 'methods',
+      payload: notification.methods.map((method, mIdx) =>
+        mIdx !== idx ? method : modifyMethodData
+      ),
     })
+    setModalStatus(ModalStatus.CLOSED)
   }, [modalFormData, notification])
 
   const onModifyFormDelete = useCallback(() => {
@@ -119,7 +127,7 @@ const NotificationSetting: React.FC<NotificationSettingProps> = ({
 
         <Table
           title={['이름', '종류', 'KEY']}
-          content={tableItems}
+          content={notification.methods}
           addDataField={() => {
             setModalFormData({ name: '', type: '', key: '' })
             setModalStatus(ModalStatus.ADD)
@@ -159,15 +167,15 @@ const NotificationSetting: React.FC<NotificationSettingProps> = ({
             </Span>
             <div className={cn('flex flex-col')}>
               <label
-                htmlFor="noti-service-name"
+                htmlFor="name"
                 className={cn('text-base font-bold text-gray-800')}
               >
                 알림 서비스명
               </label>
               <Input
                 type="text"
-                id="noti-service-name"
-                name="noti-service-name"
+                id="name"
+                name="name"
                 spacing="mt-2 mb-6"
                 size="normal"
                 placeholder="알림 서비스명을 입력해주세요"
@@ -186,8 +194,8 @@ const NotificationSetting: React.FC<NotificationSettingProps> = ({
                 placeholder="알림 종류"
                 options={['Discord', 'Email', 'Slack', 'SMS', 'Telegram']}
                 size="normal"
-                // initialValue={notification.methods[notification.id].type}
-                // onChange={() => dispatch({type:'methods', payload: })}
+                initialValue={modalFormData.type}
+                onChange={onFormListBoxChange}
               />
             </div>
             <div className={cn('flex flex-col')}>
@@ -203,13 +211,13 @@ const NotificationSetting: React.FC<NotificationSettingProps> = ({
               </Span>
               <Input
                 type="text"
-                id="service-key"
-                name="service-key"
+                id="key"
+                name="key"
                 spacing="mb-6"
                 size="big"
                 placeholder="KEY 값을 입력해주세요"
-                // value={}
-                // onChange={}
+                value={modalFormData.key}
+                onChange={onFormInputChange}
               />
             </div>
           </div>
@@ -234,11 +242,5 @@ const NotificationSetting: React.FC<NotificationSettingProps> = ({
     </>
   )
 }
-
-const tableItems = [
-  { name: '문자 A', type: 'SMS', key: '010-1234-5678' },
-  { name: '이메일 A', type: 'email', key: 'company@example.com' },
-  { name: '이메일 B', type: 'email', key: 'private@example.com' },
-]
 
 export default NotificationSetting
