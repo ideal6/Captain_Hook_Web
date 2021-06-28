@@ -4,9 +4,11 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { getApiClient } from '../utils/getApiClient'
 import Modal from '../components/atoms/modal'
+import { useRouter } from 'next/router'
 
 const Home: React.FC = () => {
   const apiClient = getApiClient()
+  const router = useRouter()
   const [user, setUser] = useState(undefined)
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -17,7 +19,10 @@ const Home: React.FC = () => {
   useEffect(() => {
     apiClient
       .get('/users/me')
-      .then(({ data }) => setUser(data))
+      .then(({ data }) => {
+        setUser(data)
+        router.push('/webhooks')
+      })
       .catch(console.error)
   }, [])
 
