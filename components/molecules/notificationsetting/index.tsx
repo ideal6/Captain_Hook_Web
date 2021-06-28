@@ -215,8 +215,8 @@ const NotificationSetting: React.FC<NotificationSettingProps> = ({
                 KEY
               </label>
               <Span spacing="mt-1 mb-2" fontSize="small" fontColor="gray-600">
-                SMS는 010-XXXX-XXX 형식, Email은 이메일 형식, 이외에는 KEY 값을
-                입력해주세요.
+                SMS는 010-XXXX-XXX 형식, Email은 이메일 형식, 이외에는 추가할
+                필요가 없습니다.
               </Span>
               <Input
                 type="text"
@@ -224,8 +224,14 @@ const NotificationSetting: React.FC<NotificationSettingProps> = ({
                 name="key"
                 spacing="mb-6"
                 size="big"
-                placeholder="KEY 값을 입력해주세요"
-                value={modalFormData.key}
+                placeholder={
+                  modalFormData.type === 'telegram'
+                    ? '알림을 추가하면 등록 명령어가 생성됩니다.'
+                    : 'KEY 값을 입력해주세요'
+                }
+                value={
+                  modalFormData.type === 'telegram' ? '' : modalFormData.key
+                }
                 onChange={onFormInputChange}
               />
             </div>
