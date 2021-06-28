@@ -52,8 +52,6 @@ const fieldTypePreset: Record<string, WebhookFieldType[]> = {
       field: '.pusher.email',
     },
   ],
-  discord: [],
-  custom: [],
 }
 
 const WebhookSetting: React.FC<WebhookSettingProps> = ({
@@ -150,8 +148,7 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
           initialValue={webhook.type}
           onChange={(data: string) => {
             dispatch({ type: 'type', payload: data })
-            if (data !== 'custom')
-              dispatch({ type: 'fields', payload: fieldTypePreset[data] || [] })
+            dispatch({ type: 'fields', payload: fieldTypePreset[data] ?? [] })
           }}
         />
       </div>
