@@ -3,11 +3,13 @@
 import cn from 'classnames'
 import { useCallback, useState } from 'react'
 import Notification from '../../../types/notification'
+import Webhook from '../../../types/webhook'
 import Input from '../../atoms/input'
 import ListBox from '../../atoms/listbox'
 import Modal from '../../atoms/modal'
 import Span from '../../atoms/span'
 import Table from '../table'
+import NotificationCondition from '../notificationcondition'
 
 interface NotificationSettingProps {
   notification: Notification
@@ -84,6 +86,13 @@ const NotificationSetting: React.FC<NotificationSettingProps> = ({
     })
     setModalStatus(ModalStatus.CLOSED)
   }, [modalFormData, notification])
+
+  if (!notification.condition) notification.condition = '$|==|$'
+  const condition = {
+    left: notification.condition.split('|')[0],
+    center: notification.condition.split('|')[1],
+    right: notification.condition.split('|')[2],
+  }
 
   return (
     <>
@@ -192,7 +201,7 @@ const NotificationSetting: React.FC<NotificationSettingProps> = ({
               </label>
               <ListBox
                 placeholder="알림 종류"
-                options={['Discord', 'Email', 'Slack', 'SMS', 'Telegram']}
+                options={['discord', 'email', 'slack', 'SMS', 'telegram']}
                 size="normal"
                 initialValue={modalFormData.type}
                 onChange={onFormListBoxChange}
@@ -238,6 +247,7 @@ const NotificationSetting: React.FC<NotificationSettingProps> = ({
           참조할 웹훅을 이용하여 알림 조건을 입력해주세요.
         </Span>
         {/* TODO: 알림 조건 세부 설정 */}
+        <NotificationCondition dispatch={dispatch} condition={condition} />
       </div>
     </>
   )

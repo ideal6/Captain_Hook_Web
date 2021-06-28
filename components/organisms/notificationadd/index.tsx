@@ -40,7 +40,7 @@ const NotificationAdd: React.FC = () => {
   const router = useRouter()
   const [notification, dispatch] = useReducer(reducer, {
     name: '',
-    condition: '',
+    condition: '$|==|$',
     methods: [
       { name: '문자 A', type: 'SMS', key: '010-1234-5678' },
       { name: '이메일 A', type: 'email', key: 'company@example.com' },
