@@ -15,12 +15,19 @@ interface WebhookListProps {
 const WebhookList: React.FC<WebhookListProps> = ({ spacing }) => {
   const router = useRouter()
   const [webhooks, setWebhooks] = useState<Webhook[]>([])
+  const [search, setSearch] = useState<string>('')
+
+  const searchHandler = (e) => {
+    setSearch(e.currentTarget.value)
+  }
+
   useEffect(() => {
     const apiClient = getApiClient()
     apiClient.get('/webhooks').then(({ data }) => {
       setWebhooks(data)
     })
   }, [])
+
   return (
     <div className={cn(`${spacing}`)}>
       <div className={cn('flex justify-between')}>
@@ -34,6 +41,8 @@ const WebhookList: React.FC<WebhookListProps> = ({ spacing }) => {
             spacing="pl-9 mb-5 relative"
             size="small"
             placeholder="웹훅 이름으로 검색"
+            value={search}
+            onChange={searchHandler}
           />
         </div>
         {/* 2. 웹훅 추가 button */}
@@ -53,15 +62,22 @@ const WebhookList: React.FC<WebhookListProps> = ({ spacing }) => {
       </div>
       {/* 3. 웹훅 list */}
       <div>
-        {webhooks.map(({ id, type, name, createdAt }) => (
-          <WebhookItem
-            key={id}
-            id={id}
-            type={type}
-            name={name}
-            createdAt={createdAt}
-          />
-        ))}
+        {webhooks
+          // .filter((webhook) => {
+          //   webhook.name.toLowerCase().includes(search.toLowerCase())
+          // })
+          .reverse()
+          .map(({ id, type, name, createdAt }) => {
+            return (
+              <WebhookItem
+                key={id}
+                id={id}
+                type={type}
+                name={name}
+                createdAt={createdAt}
+              />
+            )
+          })}
       </div>
     </div>
   )

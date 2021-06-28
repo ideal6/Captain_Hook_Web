@@ -15,6 +15,12 @@ interface NotificationListProps {
 const NotificationList: React.FC<NotificationListProps> = ({ spacing }) => {
   const router = useRouter()
   const [notifications, setNotifications] = useState<Notification[]>([])
+  const [search, setSearch] = useState<string>('')
+
+  const searchHandler = (e) => {
+    setSearch(e.currentTarget.value)
+  }
+
   useEffect(() => {
     const apiClient = getApiClient()
     apiClient.get('/notifications').then(({ data }) => {
@@ -35,6 +41,8 @@ const NotificationList: React.FC<NotificationListProps> = ({ spacing }) => {
             spacing="pl-9 mb-5 relative"
             size="small"
             placeholder="알림 이름으로 검색"
+            value={search}
+            onChange={searchHandler}
           />
         </div>
         {/* 2. 알림 추가 button */}
@@ -54,8 +62,12 @@ const NotificationList: React.FC<NotificationListProps> = ({ spacing }) => {
         {/* 3. 알림 list */}
       </div>
       <div>
-        {notifications.map(
-          ({ id, name, createdAt, dependentWebhooks, methods }) => (
+        {notifications
+          .filter((notification) =>
+            notification.name.toLowerCase().includes(search.toLowerCase())
+          )
+          .reverse()
+          .map(({ id, name, createdAt, dependentWebhooks, methods }) => (
             <NotificationItem
               id={id}
               key={id}
@@ -64,8 +76,7 @@ const NotificationList: React.FC<NotificationListProps> = ({ spacing }) => {
               dependentWebhooks={dependentWebhooks}
               methods={methods}
             />
-          )
-        )}
+          ))}
       </div>
     </div>
   )

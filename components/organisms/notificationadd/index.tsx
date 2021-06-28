@@ -41,11 +41,7 @@ const NotificationAdd: React.FC = () => {
   const [notification, dispatch] = useReducer(reducer, {
     name: '',
     condition: '$|==|$',
-    methods: [
-      { name: '문자 A', type: 'SMS', key: '010-1234-5678' },
-      { name: '이메일 A', type: 'email', key: 'company@example.com' },
-      { name: '이메일 B', type: 'email', key: 'private@example.com' },
-    ],
+    methods: [],
   } as Notification)
 
   const submitCallback = useCallback(() => {
