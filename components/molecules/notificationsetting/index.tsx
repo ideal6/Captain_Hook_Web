@@ -243,8 +243,14 @@ const NotificationSetting: React.FC<NotificationSettingProps> = ({
         >
           알림 조건 설정
         </Span>
+        <Span spacing="mb-2" fontSize="small" fontColor="gray-600">
+          사용자가 웹훅 데이터 필드 축약에서 설정한 값들을 이용하여, 알림 조건을
+          입력해주세요.
+        </Span>
         <Span spacing="mb-5" fontSize="small" fontColor="gray-600">
-          참조할 웹훅을 이용하여 알림 조건을 입력해주세요.
+          예) Github에서 push한 사람이 ideal6일 때 알림을 받고 싶은 경우,
+          [Github_Webhook - Push_User_Name] == 값 [ideal6] 와 같이 설정하면
+          된다.
         </Span>
         {/* TODO: 알림 조건 세부 설정 */}
         <NotificationCondition dispatch={dispatch} condition={condition} />

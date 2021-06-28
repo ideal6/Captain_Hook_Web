@@ -8,7 +8,13 @@ interface NotificationItemProps {
   id: number
   name: string
   createdAt: string
-  dependentWebhooks: string[]
+  dependentWebhooks: {
+    id: number
+    name: string
+    type: string
+    userId: string
+    updatedAt: string
+  }[]
   methods: {
     name: string
     type: string
@@ -57,13 +63,15 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
             )}
           >
             <div className={cn('flex flex-row')}>
-              {dependentWebhooks.map((id, idx) => (
-                <img
-                  key={idx}
-                  src={`/${id}.png`}
-                  className={cn('w-auto h-8 my-auto mr-3')}
-                />
-              ))}
+              {dependentWebhooks.map(({ type }, idx) => {
+                return (
+                  <img
+                    key={idx}
+                    src={`/${type}.png`}
+                    className={cn('w-auto h-8 my-auto mr-3')}
+                  />
+                )
+              })}
             </div>
             <div className={cn('flex flex-row mr-6')}>
               {methods.map(({ type }, idx) => (
