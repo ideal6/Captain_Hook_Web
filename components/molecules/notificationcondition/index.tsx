@@ -73,7 +73,7 @@ const NotificationCondition: React.FC<NotificationConditionProps> = ({
               condition.left.startsWith('&')
                 ? referenceOptions.find(
                     (op) => op.value === condition.left.substr(1)
-                  )
+                  ) || referenceOptions[0]
                 : referenceOptions[0]
             }
             onChange={(value) =>
@@ -153,7 +153,7 @@ const NotificationCondition: React.FC<NotificationConditionProps> = ({
               condition.right.startsWith('&')
                 ? referenceOptions.find(
                     (op) => op.value === condition.right.substr(1)
-                  )
+                  ) || referenceOptions[0]
                 : referenceOptions[0]
             }
             onChange={(value) =>
