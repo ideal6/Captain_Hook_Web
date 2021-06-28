@@ -53,7 +53,6 @@ const NotificationCondition: React.FC<NotificationConditionProps> = ({
       .reduce((p, c) => [...p, ...c], [])
     setReferenceOptions([{ label: '값', value: 'value' }, ...options])
   }, [webhooks])
-
   return (
     webhooks &&
     referenceOptions && (
@@ -151,7 +150,7 @@ const NotificationCondition: React.FC<NotificationConditionProps> = ({
             options={referenceOptions}
             size="normal"
             initialValue={
-              condition.left.startsWith('&')
+              condition.right.startsWith('&')
                 ? referenceOptions.find(
                     (op) => op.value === condition.right.substr(1)
                   )

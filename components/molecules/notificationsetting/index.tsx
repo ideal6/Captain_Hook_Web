@@ -89,9 +89,9 @@ const NotificationSetting: React.FC<NotificationSettingProps> = ({
 
   if (!notification.condition) notification.condition = '$|==|$'
   const condition = {
-    left: notification.condition.split('|')[0],
-    center: notification.condition.split('|')[1],
-    right: notification.condition.split('|')[2],
+    left: notification?.condition?.split('|')[0] || '$',
+    center: notification?.condition?.split('|')[1] || '==',
+    right: notification?.condition?.split('|')[2] || '$',
   }
 
   return (
