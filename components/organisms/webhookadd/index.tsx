@@ -37,20 +37,8 @@ const WebhookAdd: React.FC = () => {
   const router = useRouter()
   const [webhook, dispatch] = useReducer(reducer, {
     name: '',
-    type: 'github',
-    fields: [
-      { name: 'Name', description: '사용자 이름', field: '.user.name' },
-      {
-        name: 'Email',
-        description: '사용자 이메일 주소',
-        field: '.user.email',
-      },
-      {
-        name: 'Repository Names',
-        description: '레포지토리 이름들',
-        field: '.repository[any].name',
-      },
-    ],
+    type: 'custom',
+    fields: [],
   } as Webhook)
   const submitCallback = useCallback(() => {
     const apiClient = getApiClient()

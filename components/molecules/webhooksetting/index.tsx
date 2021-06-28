@@ -28,6 +28,34 @@ interface ModalFormData {
   field: string
 }
 
+interface WebhookFieldType {
+  name: string
+  description: string
+  field: string
+}
+
+const fieldTypePreset: Record<string, WebhookFieldType[]> = {
+  github: [
+    {
+      name: 'Repository Name',
+      description: '리포지토리 이름',
+      field: '.repository.name',
+    },
+    {
+      name: 'Push User Name',
+      description: '커밋을 푸시한 유저의 이름',
+      field: '.pusher.name',
+    },
+    {
+      name: 'Push User Email',
+      description: '커밋을 푸시한 유저의 이메일 주소',
+      field: '.pusher.email',
+    },
+  ],
+  discord: [],
+  custom: [],
+}
+
 const WebhookSetting: React.FC<WebhookSettingProps> = ({
   webhook,
   dispatch,
@@ -120,7 +148,11 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
           options={serviceOptions}
           size="big"
           initialValue={webhook.type}
-          onChange={(data: string) => dispatch({ type: 'type', payload: data })}
+          onChange={(data: string) => {
+            dispatch({ type: 'type', payload: data })
+            if (data !== 'custom')
+              dispatch({ type: 'fields', payload: fieldTypePreset[data] || [] })
+          }}
         />
       </div>
 
@@ -268,13 +300,13 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
 }
 
 const serviceOptions = [
-  'discord',
+  'custom',
   'github',
+  'discord',
   'google_calendar',
   'google_drive',
   'slack',
   'telegram',
-  'custom',
 ]
 
 export default WebhookSetting
