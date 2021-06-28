@@ -255,10 +255,13 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
           웹훅 정보
         </Span>
         <Span spacing="mb-4" fontSize="small" fontColor="gray-600">
-          사용하실 웹훅 서비스에서 아래의 주소로 데이터를 보내도록 주소를
-          설정하세요.
+          아래 링크에 HTTP POST 방식으로 웹훅을 보내도록 설정하세요.
         </Span>
-        <CopyInput />
+        <CopyInput
+          text={webhook.id && `http://ideal6.kr:3000/webhooks/w/${webhook.id}`}
+          placeholder="(웹훅을 생성하면 링크가
+          생성됩니다.)"
+        />
       </div>
     </>
   )
