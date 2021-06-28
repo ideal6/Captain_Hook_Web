@@ -129,6 +129,7 @@ const NotificationCondition: React.FC<NotificationConditionProps> = ({
               { label: '<=', value: '<=' },
               { label: '>', value: '>' },
               { label: '>=', value: '>=' },
+              { label: '!=', value: '!=' },
             ]}
             size="normal"
             initialValue={{ label: condition.center, value: condition.center }}
