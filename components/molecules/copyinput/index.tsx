@@ -2,15 +2,13 @@ import cn from 'classnames'
 import { ClipboardCopyIcon } from '@heroicons/react/outline'
 import Input from '../../atoms/input'
 import Span from '../../atoms/span'
-import { useState } from 'react'
 
-const CopyInput: React.FC = () => {
-  const [text, setText] = useState('')
+interface CopyInputProps {
+  text: string
+  placeholder?: string
+}
 
-  const onChange = (e) => {
-    setText(e.target.value)
-  }
-
+const CopyInput: React.FC<CopyInputProps> = ({ text, placeholder }) => {
   return (
     <div className={cn('w-360 relative z-0 flex flex-row')}>
       <Input
@@ -19,8 +17,8 @@ const CopyInput: React.FC = () => {
         name="copy-input"
         spacing="md-5 pr-10 relative overflow-hidden"
         size="copy"
-        placeholder="url"
-        onChange={onChange}
+        placeholder={placeholder}
+        onChange={null}
         value={text}
       />
       <Span
