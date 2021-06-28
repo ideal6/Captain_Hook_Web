@@ -70,7 +70,7 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
     (e) => {
       setModalFormData({
         ...modalFormData,
-        [e.currentTarget.name]: e.currentTarget.value,
+        [e.target.name]: e.target.value,
       })
     },
     [modalFormData]
@@ -216,8 +216,8 @@ const WebhookSetting: React.FC<WebhookSettingProps> = ({
               </label>
               <Input
                 type="text"
-                id="field-name"
-                name="field-name"
+                id="name"
+                name="name"
                 spacing="mt-2 mb-6"
                 size="normal"
                 placeholder="필드 이름을 입력해주세요"
