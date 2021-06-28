@@ -3,7 +3,13 @@ export default interface Notification {
   name: string
   condition: string
   histories: []
-  dependentWebhooks: string[]
+  dependentWebhooks: {
+    id: number
+    name: string
+    type: string
+    userId: string
+    updatedAt: string
+  }[]
   methods: {
     name: string
     type: string
