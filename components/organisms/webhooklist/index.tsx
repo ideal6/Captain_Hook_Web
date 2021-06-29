@@ -63,9 +63,15 @@ const WebhookList: React.FC<WebhookListProps> = ({ spacing }) => {
       {/* 3. 웹훅 list */}
       <div>
         {webhooks
-          // .filter((webhook) => {
-          //   webhook.name.toLowerCase().includes(search.toLowerCase())
-          // })
+          .filter((webhook) =>
+            webhook.name
+              .toLocaleLowerCase()
+              .includes(search.toLocaleLowerCase())
+          )
+          .sort(
+            (a, b) =>
+              new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+          )
           .reverse()
           .map(({ id, type, name, createdAt }) => {
             return (

@@ -64,7 +64,13 @@ const NotificationList: React.FC<NotificationListProps> = ({ spacing }) => {
       <div>
         {notifications
           .filter((notification) =>
-            notification.name.toLowerCase().includes(search.toLowerCase())
+            notification.name
+              .toLocaleLowerCase()
+              .includes(search.toLocaleLowerCase())
+          )
+          .sort(
+            (a, b) =>
+              new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
           )
           .reverse()
           .map(({ id, name, createdAt, dependentWebhooks, methods }) => (
